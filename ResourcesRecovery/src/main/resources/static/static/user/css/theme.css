@@ -1,0 +1,277 @@
+.slider .swiper-active-switch {
+	background:  #009bdb !important;
+	border: 1px solid  #009bdb !important;
+}
+
+header {
+	height: 50px;
+	background-color:  #009bdb !important;
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+	display: -webkit-box;
+	top:0
+}
+.swiper-pagination-bullet-active {
+	background:  #009bdb !important;
+	opacity: 1;
+}
+a {
+	
+	text-decoration: none;
+	outline: 0
+}
+
+.icon-tuangou:before { content: "\e658"; color:  #009bdb !important; }
+
+.sy_recmd .title {
+	border-left: solid 6px  #009bdb !important;
+	border-bottom: 0.01rem solid #e6e6e6;
+	border-top: 0.01rem solid #e6e6e6;
+	background: #fff;
+	padding: 0.05rem 0.1rem;
+	overflow: hidden;
+	line-height: 0.3rem;
+	font-size: 0.16rem;
+}
+.more:after {
+	position: absolute;
+	right: .05rem;
+	top: 50%;
+	display: block;
+	content: '';
+	width: .6em;
+	height: .6em;
+	border-left: .02rem solid  #009bdb !important;
+	border-bottom: .02rem solid  #009bdb !important;
+	-webkit-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+	-moz-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+	-ms-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg)
+}
+
+.more .more-after {
+	position: absolute;
+	right: .25rem;
+	top: 50%;
+	-webkit-transform: translateY(-.5em);
+	color:  #009bdb !important
+}
+dl.list .db>.react {
+	color:  #009bdb !important;
+	padding: 0 .2rem
+}
+.dealcard .dealcard-new {
+	position: absolute;
+	right: -.2rem;
+	top: -.2rem;
+	padding-right: .08rem;
+	font-size: .24rem;
+	height: .28rem;
+	line-height: .28rem;
+	width: .6rem;
+	background:  #009bdb !important;
+	color: #fff;
+	text-align: right
+}
+
+.dealcard .dealcard-nobooking:after {
+	content: "免预约";
+	font-size: .24rem;
+	background:  #009bdb !important;
+	color: #fff;
+	padding: .05rem;
+	position: absolute;
+	width: 1.3rem;
+	text-align: center;
+	-webkit-transform: rotateZ(-45deg);
+	left: -.35rem;
+	top: .2rem
+}
+.dealcard .dealcard-new:before {
+	position: absolute;
+	content: '';
+	display: block;
+	top: 0;
+	left: -.2rem;
+	border: .14rem solid  #009bdb !important;
+	border-left: .14rem solid transparent
+}
+.dealcard .price>strong,
+.cinemacard .price>strong,
+.dealcard .price .strong,
+.cinemacard .price .strong {
+	font-size: .14rem;
+	color:  #888 !important;
+	width:120px; text-align:left; inline-block;
+}
+.dealcard .price>.strong-color,
+.cinemacard .price>.strong-color {
+	font-size: .13rem;
+	color:  #009bdb !important
+}
+
+.btn-weak {
+	border: .01rem solid  #009bdb !important;
+	padding: 0 .3rem;
+	background: 0;
+	color:  #009bdb !important
+}
+
+.btn-weak:active {
+	color: #fff;
+	background:  #009bdb !important
+}
+
+.btn-link {
+	padding: 0 .3rem;
+	background: 0;
+	color:  #009bdb !important
+}
+
+.strong-color {
+	color:  #009bdb !important}
+.merchant .biz-call {
+	width: .5rem;
+	text-align: center;
+	border-left: 1px solid #DDD8CE;
+	font-size: .5rem;
+	height: .8rem;
+	line-height: .8rem;
+	color:  #009bdb !important}
+.dealcard .price .location-right,
+.dealcard .title.pick .location-right {
+	background:  #009bdb !important;
+	color: white;
+	padding: 0px 2px;
+	border-radius: 2px;
+	font-size: 10px;
+	top: 4px;
+}
+.pldengji ul li.cur {
+	border: 1px solid  #009bdb !important;
+}
+
+.pldengji ul li.cur a {
+	color:  #009bdb !important;
+}
+
+.indiana .list .duobao {
+	display: block;
+	width: 21%;
+	height: .3rem;
+	line-height: .3rem;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-top: .14rem;
+	font-size: .12rem;
+	text-align: center;
+	border: 1px solid  #009bdb !important;
+	color:  #009bdb !important;
+}
+
+.footerone .right .btnone {
+	background-color:  #009bdb !important;
+}
+
+.sdetail .middle .xia ul li.cur {
+	background-color:  #009bdb !important;
+	color: #fff;
+}
+
+.shop-btn {
+	width: 100%;
+	height: .5rem;
+	display: block;
+	line-height: .5rem;
+	margin-bottom: .4rem;
+	text-align: center;
+	background-color:  #009bdb !important;
+	color: #fff;
+	font-size: .15rem;
+}
+.shopcar .list .right .bottom .zuo ul li {
+	float: left;
+	color:  #009bdb !important;
+	font-size: .15rem;
+	width: .2rem;
+	height: .2rem;
+	text-align: center;
+	line-height: .2rem;
+}
+
+.shopcar .list .right .bottom i {
+	line-height: .2rem;
+	color:  #009bdb !important;
+	font-size: .15rem;
+}
+.settlement a {
+	width: 40%;
+	height: .5rem;
+	line-height: .5rem;
+	background-color:  #009bdb !important;
+	font-size: .15rem;
+	color: #fff;
+	text-align: center;
+}
+
+.renting-footer ul li:last-child {
+	background-color:  #009bdb !important;
+}
+
+.farm .rentingtop p span{color:  #009bdb !important; font-size: .15rem;}
+
+.renting-footertwo ul li {
+	width: 100%;
+	background-color:  #009bdb !important;
+}
+.category .list .bottom ul li a.more {
+	color:  #009bdb !important;
+	padding-right: .1rem;
+}
+.h-top {
+	width: 100%;
+	background-color:  #009bdb !important;
+	position: relative;
+}
+a.center-btn {
+	width: 94%;
+	display: block;
+	margin: 0 auto 5%;
+	text-align: center;
+	height: .5rem;
+	line-height: .5rem;
+	background-color:  #009bdb !important;
+	color: #fff !important;
+	font-size: .15rem;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.account .top{height: .5rem; width: 100%; background-color:  #009bdb !important;}
+.notice .tab-hd li.on{ position: relative; border-bottom: 2px solid  #009bdb !important;}
+
+a.address-add{display: block; width: 94%; height: .5rem; line-height: .5rem; margin: 5% 3%; font-size: .15rem; color: #fff; text-align: center; background-color:  #009bdb !important; border-radius: 5px; -webkit-border-radius: 5px;}
+footer .icon.on {
+    background-image: url(../img/business_footIco_on.png);
+}
+
+.sy_title .left{
+    border-left: 5px solid #009bdb;
+    padding-left: 8px;
+}
+.js-taking{
+	color:#009bdb !important;
+	
+	    border-color: #009bdb !important;
+}
+.js-statements{
+	color:#259040!important;
+	
+	    border-color: #259040 !important;
+}
+
+.renting-footer ul li:last-child{
+	background-color:#259040 !important;
+}
+.renting-footer ul li:first-child{
+	background-color:none;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>预约成功</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel="Shortcut Icon" href="/favicon.ico">
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+		</div>
+	</div>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a  href="javascript:window.location.href='/user/order'" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">预约成功</div>
+	</header>
+
+	<div id="container">
+		<div id="main">
+			<form class="wrapper-list">
+				<h4 class="dh-success" style="color: red">
+					<img src="/static/user/img/success.png" width="25px">预约成功!
+				</h4>
+				<dl class="list">
+					<dd>
+						<dl>
+							<dd class="dd-padding kv-line-r">
+								<h6>姓名：</h6>
+								<span class="kv-v"> <span class="J_total-price"
+									id="applyName">小可爱</span>
+								</span>
+							</dd>
+							<dd class="dd-padding kv-line-r">
+								<h6>手机号：</h6>
+								<span class="kv-v"> <span class="J_total-price"
+									id="phone">12345678910</span>
+								</span>
+							</dd>
+							<dd class="dd-padding kv-line-r">
+								<h6>预约地址：</h6>
+								<span class="kv-v"> <span class="J_total-price"
+									id="address"> 河北省邯郸市邯山区邯郸学院 </span>
+								</span>
+							</dd>
+							<dd class="dd-padding kv-line-r">
+								<h6>下单时间：</h6>
+								<span class="kv-v"> <span id="applyTime"
+									class="J_total-price">XXXX年XX月XX日 XX:XX</span>
+								</span>
+							</dd>
+							<dd class="dd-padding kv-line-r">
+								<h6>预约时间：</h6>
+								<span class="kv-v"> <span id="expectTime"
+									class="J_total-price">XXXX年XX月XX日 XX:XX</span>
+								</span>
+							</dd>
+						</dl>
+					</dd>
+				</dl>
+			</form>
+		</div>
+		<a href="order.html" class="address-add fl">完成 </a>
+	</div>
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script>
+	$(function() {
+
+		var orderId = getUrlArgObject()['orderId'];
+		if (orderId > 0 && orderId != null) {
+
+			$.ajax({
+				"url" : "/user/orders/" + orderId,
+				"contentType" : "application/json",
+				"type" : "get",
+				"async" : false,
+				"error" : function() {
+					mui.alert("服务器繁忙", "提示");
+				},
+				"success" : function(returnData) {
+
+					if (returnData.success) {
+						//加载用户信息（未完成）
+						$.ajax({
+							"url" : "/user/collect_address/"
+									+ returnData.data.collectAddressId,
+							"contentType" : "application/json",
+							"type" : "get",
+							"error" : function() {
+								mui.alert("服务器繁忙", "提示");
+							},
+							"success" : function(returnData) {
+								if (returnData.success) {
+									$("#applyName").html(
+											returnData.data.applyName);
+									$("#phone").html(returnData.data.phone);
+									$("#address").html(
+											returnData.data.province
+													+ returnData.data.city
+													+ returnData.data.district
+													+ returnData.data.town
+													+ returnData.data.address);
+								}
+							}
+						});
+
+						$("#applyTime").html(
+								getMyDate(returnData.data.applyTime));
+						$("#expectTime").html(
+								getMyDate(returnData.data.expectTime));
+						$("#loading").hide();
+					} else {
+						mui.alert(returnData.errMsg, "提示");
+					}
+
+				}
+			});
+		}
+	});
+</script>
+</html>

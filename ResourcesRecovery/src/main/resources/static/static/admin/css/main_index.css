@@ -1,0 +1,148 @@
+*{
+			margin:0;
+			padding:0;
+			font-family:"微软雅黑";
+		}
+		.header{
+			width:1200px;
+			height:250px;
+			background :url(../img/bg.jpg) no-repeat center;
+			background-size:cover;
+			margin :0 auto;
+			
+		}
+		.center{
+			width:1200px;
+			height:auto;
+			margin :0 auto;
+		}
+		.center-title{
+			margin-bottom: 10px;
+			padding: 15px;
+			line-height: 22px;
+			border-left: 5px solid #3366cc;
+			border-radius: 0 2px 2px 0;
+			background-color: #fefefe;
+			margin-top:20px;
+			position:relative;
+			height:55px;
+		}
+		.center-title p{
+			width:150px;
+			text-align:left;
+			line-height:22px;
+			display:block;
+		}
+		.panel{
+			position:relative;
+		}
+		.panel button,.center-title button{
+			display: block;
+			position:absolute;
+			right:10px;
+			top:8px;;
+			height: 38px;
+			line-height: 38px;
+			padding: 0 18px;
+			background-color: #1E9FFF;
+			color: #fff;
+			white-space: nowrap;
+			text-align: center;
+			font-size: 14px;
+			border: none;
+			border-radius: 2px;
+			cursor: pointer;
+			opacity: 0.8;
+			color: #fff;
+			
+		}
+		#adminM {
+			display: block;
+			position:absolute;
+			right:150px;
+			top:8px;;
+			height: 38px;
+			line-height: 38px;
+			padding: 0 18px;
+			background-color: #1E9FFF;
+			color: #fff;
+			white-space: nowrap;
+			text-align: center;
+			font-size: 14px;
+			border: none;
+			border-radius: 2px;
+			cursor: pointer;
+			opacity: 0.8;
+			color: #fff;
+			
+		}
+		.panel button:hover,.center-title button:hover{
+			opacity: 1;;
+		}
+		body{
+			background: url(../img/bg2.jpg) no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		.college{
+			width:100%;
+			height:500px;
+			display:block;
+			background-color:
+		}
+		ul{
+			text-decoration:none;
+			list-style:none;
+		}
+		a:hover{
+		text-decoration:none;
+		}
+		.college ul li a{
+			padding:0 10px;
+		    float: left;
+			margin: 2px 2px;
+			width: 395px;
+			background: #ffffff;
+			height: 40px;
+			color: #585858;
+			text-align: left;
+			text-decoration: none;
+			line-height: 42px;
+			transition:all 0.3s ease-out;
+			
+		}
+		.college ul li a:hover{
+			background-color:#3366cc;
+			color:#f2fefe;
+			transition:all 0.3s ease-in;
+		}
+		
+		
+		.college .glyphicon-home{
+		margin-right:5px;
+		}
+		
+		.footer{
+			width:100%;
+			height:120px;
+			background-color:#3366cc;
+			color:#ffffff;
+			margin :0 auto;
+			text-align:center;
+			padding-top:30px;
+		}
+		.footer p{
+		margin-bottom:15px;
+		}
+		.footer a{
+			color:#fafafa;
+		}
+		.panel-primary{
+			margin-top:20px;
+		}
+		.center-nav{
+			width:100%;
+			height:50px;
+		}

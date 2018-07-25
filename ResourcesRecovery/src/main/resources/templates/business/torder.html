@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>预约确认</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.min.css"/>
+		<link rel="stylesheet" href="/static/user/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/datedropper.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/timedropper.min.css">
+		<link rel="stylesheet" href="/static/user/css/theme.css" />
+		<style type="text/css">
+			.demo{margin:8px auto 2px auto;width:320px}
+			.input{padding:5px;border:1px solid #d3d3d3}
+			.none{
+				border:none; 
+				width:100%;
+				height: 100px;
+				line-height: 14px;
+			}
+			.none::-webkit-input-placeholder {
+         		/* placeholder字体大小  */
+         		font-size: 12px;
+         		/* placeholder位置  */
+         		text-align: left;
+				line-height: 14px;
+     		}
+     		.phone{
+     			margin: 15px; auto;
+     		}
+     		.address{
+     			margin-left: 100px;
+     		}
+
+		</style>
+	</head>
+	<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">
+				确认预约
+			</div>					
+		</header>
+		
+		<div id="container">		
+			<div id="main">
+				<section class="menu_wrap pay_wrap">
+					<ul class="boxs boxstwo">
+						<li>
+							<a class="">选择方式：</a>&nbsp;&nbsp;
+							<a class="btn_express pick_in_store">上门回收</a>
+						</li>
+						<li class="li_delivery" id="addrContent"
+						style="cursor: pointer;">选择上门地址：
+						<span id="addrApplyName"></span> <span
+							id="addrPhone"></span><br> <span id="addrAddress"></span>
+					
+						<div class="fr">
+							<i class="ico_arrow"></i>
+						</div></li>
+						<li id="show_arrive_date">
+							<a class="date">
+								<strong>预约时间：</strong>	
+								<div class="demo">
+									<p>请选择日期：<input type="text" class="input" id="pickdate" /></p><br/>
+									<p>请选择时间：<input type="text" class="input" id="picktime" /></p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a style="width: 100%;">
+								<textarea class="none" type="text"  name="" id="" value="" placeholder="您对回收员有什么需求和建议，请填写在这里"></textarea>
+							</a>
+						</li>
+					</ul>
+				</section>
+
+				<div class="fixed">
+					<span class="fr btn">
+						<a  class="comm_btn" id="submit_order">确认预约</a>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script src="/static/user/js/datedropper.min.js"></script>
+<script src="/static/user/js/timedropper.min.js"></script>
+<script>
+$(function() {
+	var addrId = getUrlArgObject()['addrId'];
+	var addr;
+	if(addrId == null) 
+		$.ajax({
+			"url" : "/user/collect_address/default",								
+			"contentType": "application/json",
+			"type" : "get",
+			"async": false,
+			"error" : function() {
+				mui.alert("服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				addrId=returnData.data;
+			}
+		});
+	if (addrId != null) {
+		$.ajax({
+			"url" : "/user/collect_address/" + addrId,
+			"contentType" : "application/json",
+			"type" : "get",
+			"async" : false,
+			"error" : function() {
+				mui.alert("服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				if (returnData.success)
+					addr = returnData.data;
+			}
+		});
+
+		$("#addrApplyName").html(addr.applyName);
+		$("#addrPhone").html("&nbsp;&nbsp;&nbsp;" + addr.phone);
+		$("#addrAddress")
+				.html(
+						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+								+ addr.province+addr.city+addr.district+addr.town+addr.address);
+		
+
+	}
+	$("#loading").hide();
+	$("#submit_order").click(function() {
+
+
+		var orderData = {};
+		orderData.collectAddressId = addrId;
+		orderData.describe = $("#desc").val();
+		orderData.applyTime = new Date();
+		orderData.expectTime = new Date($("#pickdate").val() + " " + $("#picktime").val());
+		orderData.enable = 1;
+		orderData.state = 1;
+		orderData.collectTimeType = 2;
+
+		$.ajax({
+			"url" : "/user/orders",
+			"contentType" : "application/json",
+			"type" : "post",
+			"data" : JSON.stringify(orderData),
+			"error" : function() {
+				mui.alert("服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				//alert("in");
+				if (returnData.success)
+					window.location.href="/user/xiadan-success?orderId="+returnData.data;
+				else
+					mui.alert(returnData.errMsg, "提示");
+			}
+		});
+
+	});
+
+	$("#addrContent").click(function() {
+		window.location.href = "/user/select-address";
+	});
+
+});
+
+$("#pickdate").dateDropper({
+	animate: false,
+	format: 'Y-m-d',
+	maxYear: '2020'
+});
+$("#picktime").timeDropper({
+	meridians: false,
+	format: 'HH:mm',
+});
+</script>
+	</body>
+</html>

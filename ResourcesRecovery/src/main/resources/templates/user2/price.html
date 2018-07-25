@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>价格</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/common.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/index.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/mui.min.css}"/>
+		<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+		
+		<script th:src="@{/static/user/js/jquery-1.8.2.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/hmt.js}" ></script>
+		<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/swiper.min.js}" ></script>
+	</head>
+	<body>
+	
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">公示价格</div>		
+		</header>
+		<div id="container">	
+			<div id="main">
+					<div class="tab-bd">
+						<div class="tab-pal">
+							<dl class="list listtwo list-in">	
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/imgs/feizhi.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">纸</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="address">现价：</span>
+													<span class="strong">¥1.2/斤</span>							
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/imgs/suliao.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">塑料</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="address">现价：</span>
+													<span class="strong">¥2.4/斤</span>							
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/imgs/jinshu.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">金属</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="stron">铁</span>	
+													<span class="address">现价：</span>
+													<span class="strong">¥0.6/斤</span>	
+													
+													<span class="stron">&nbsp;&nbsp;钢</span>	
+													<span class="address">现价：</span>
+													<span class="strong">¥0.5/斤</span>							
+												</div>	
+												<div class="price pricetwo">
+													<span class="stron">铜</span>	
+													<span class="address">现价：</span>
+													<span class="strong">¥8.0/斤</span>
+													<span class="stron">&nbsp;&nbsp;铝</span>	
+													<span class="address">现价：</span>
+													<span class="strong">¥5.5/斤</span>								
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+								
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/imgs/dianqi.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">电器</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="address">现价：</span>
+													<span class="strong">约¥35~180</span>							
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+																
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/imgs/boli.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">玻璃</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="address">现价：</span>
+													<span class="strong">¥0.7/斤</span>							
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+								<dd>
+									<a href="#" class="react">
+										<div class="dealcard dealcardtwo clearfloat">
+											<div class="dealcard-img imgbox">
+												<img th:src="@{/static/user/img/54b9cae9d6bc4.jpg}">
+											</div>
+											<div class="dealcard-block-right dealcard-block-righttwo">
+												<div class="dealcard-brand dealcard-brandtwo single-line">
+													<span class="poi-name icon-count-3">其他</span>
+												</div>
+												<div class="price pricetwo">
+													<span class="address">现价：</span>
+													<span class="strong">线下交易决定</span>							
+												</div>	
+											</div>
+										</div>
+									</a>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>	
+		</div>
+		<!--footer star-->
+		<footer id="footer">
+			<div>
+				<a href="index.html">
+					<div class="icon i-1"></div>
+					<p>首页</p>
+				</a>
+			</div>
+			<div>
+				<a href="price.html">
+					<div class="icon i-3 on"></div>
+					<p>价格</p>
+				</a>
+			</div>
+			<div>
+				<a href="order.html">
+					<div class="icon i-7"></div>
+					<p>订单</p>
+				</a>
+			</div>
+			<div>
+				<a href="center.html">
+					<div class="icon i-4"></div>
+					<p>我的</p>
+				</a>
+			</div>			
+		</footer>		
+		<!--footer end-->
+	</body>
+	<script th:src="@{/static/user/js/jquery.SuperSlide.2.1.js}" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		jQuery(".notice").slide({ titCell:".tab-hd li", mainCell:".tab-bd",delayTime:0 });
+	</script>
+</html>

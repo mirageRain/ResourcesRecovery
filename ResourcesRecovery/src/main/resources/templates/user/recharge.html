@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>余额提现</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.picker.min.css"/>
+		<link rel="stylesheet" href="/static/user/css/reset.css">
+		<link rel = "Shortcut Icon" href="/favicon.ico">
+	</head>
+	<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left:20px;"></div>
+					<div class="object" id="object_three" style="left:40px;"></div>
+					<div class="object" id="object_four" style="left:60px;"></div>
+					<div class="object" id="object_five" style="left:80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中... </p>
+			</div>
+			
+		</div> 
+	</div>
+		<!--header star-->
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">
+				余额提现
+			</div>		
+		</header>
+	    <!--header end-->
+	    <div id="container">		
+			<div id="main">
+			    <div class="warp warpthree clearfloat">
+			    	<div class="h-top h-topone clearfloat box-s">
+			    		<p id="money"></p>
+			    		<span>账户余额(元)</span>
+			    	</div>
+			    	<div class="recharge clearfloat">
+			    		<div class="czhi clearfloat box-s">
+			    			<p>提现金额</p>
+			    			<input type="text" id="moneyVal" value="" placeholder="请输入金额" />
+			    			<span>元</span>
+			    		</div>
+			    		<div class="czhi clearfloat box-s" id='Zhifu'>
+			    			<p >提现方式</p>
+			    			<span id="get-money-type"></span>
+			    			<i class="iconfont icon-xiala fr" id=""></i>
+			    		</div>
+			    		<div class="guize clearfloat box-s ra3">
+			    			<h3>提现规则</h3>
+			    			<div class="content clearfloat">
+		    				       提现为从您的账户余额，提现到您的微信钱包或支付宝余额中。
+			    			</div>
+			    		</div>
+			    		<div class="bottom clearfloat">
+			    			<a id="sub-btn"  class="db fl btn ra3">确定</a>
+			    			<a href="javascript:history.go(-1)" class="db fr btn ra3">取消</a>
+			    		</div>
+			    	</div>	    	
+			    </div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+	<script type="text/javascript" src="/static/user/js/common.js"></script>
+	<script src="/static/user/js/mui.picker.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		$
+				.ajax({
+					"url" : "/user/info",
+					"contentType" : "application/json",
+					"type" : "get",
+					"error" : function() {
+						mui.alert( "服务器繁忙", "提示");
+					},
+					"success" : function(returnData) {
+						if (returnData.success) {
+							$("#money").text(returnData.data.userInfoEntity.money);
+							$("#loading").hide();
+
+						} else {
+							mui.alert( returnData.errMsg, "提示");
+						}
+
+					}
+				});
+		$("#sub-btn").click(function(){
+			var temp= $("#get-money-type").text().trim();
+		
+			var moneyData = {};
+			moneyData.changeType=0;
+			moneyData.changeMoney=$("#moneyVal").val();
+        	
+			if(temp==null||temp=="")
+				mui.alert( "请选择收款方式", "提示");
+			else if(temp=="微信"){
+				$
+				.ajax({
+					"url" : "/user/info/money",
+					"data": JSON.stringify(moneyData),
+					"contentType" : "application/json",
+					"type" : "put",
+					"error" : function() {
+						mui.alert( "服务器繁忙", "提示");
+					},
+					"success" : function(returnData) {
+						if (returnData.success) {
+							 mui.toast('提现成功',{ duration:'long', type:'div' }); 
+							 window.location.href="/user/tixian-success?money="+$("#moneyVal").val();
+							
+
+						} else {
+							mui.alert( returnData.errMsg, "提示");
+						}
+
+					}
+				});
+				
+			}else if(temp=="支付宝"){
+				mui.prompt( "请输入您的支付宝账号", "支付宝账号", "提现", null,function(zfb){
+					if(zfb.value!=null&&zfb.value.trim()!="")
+						$.ajax({
+							"url" : "/user/info/money",
+							"data": JSON.stringify(moneyData),
+							"contentType" : "application/json",
+							"type" : "put",
+							"error" : function() {
+								mui.alert( "服务器繁忙", "提示");
+							},
+							"success" : function(returnData) {
+								if (returnData.success) {
+									 mui.toast('提现成功',{ duration:'long', type:'div' }); 
+									window.location.href="/user/tixian-success?money="+$("#moneyVal").val()+"&zfb="+zfb.value;
+									
+	
+								} else {
+									mui.alert( returnData.errMsg, "提示");
+								}
+	
+							}
+						});
+					else
+						mui.alert("您的支付宝账号格式有误，请重新填写", "提示");
+				} );
+		          
+			}
+		});
+		
+
+	});
+	(function($, doc) {
+		$.init();
+		$.ready(function() {
+			var userPicker = new $.PopPicker();
+			userPicker.setData([{
+				value: '0',
+				text: '微信'
+			}, {
+				value: '1',
+				text: '支付宝'
+			}]);
+			var showUserPickerButton = doc.getElementById('Zhifu');
+			var getMoneyType = doc.getElementById('get-money-type');
+			showUserPickerButton.addEventListener('tap', function(event) {
+				userPicker.show(function(items) {
+					getMoneyType.innerText = items[0].text;
+					
+				});
+			}, false);
+			userPicker.pickers[0].setSelectedValue('0', 2000);
+		});
+	})(mui, document);
+	</script>
+</html>

@@ -1,0 +1,247 @@
+//首页地图
+.item-phone {
+
+}
+
+
+.item-product {
+	position: relative;
+	.flexBox;
+	.itemCenter;
+	padding: 10px 15px;
+	&:before {
+		.bottomLine(@l:130px);
+	}
+	.thumbnail {
+		width: 135px;
+		margin-right: 10px;
+		img {
+			width: 100%;
+		}
+	}
+	.product-inner {
+		position: relative;
+		width: 75%;
+		.name {
+			font-size: 16px;
+			color: #333;
+		}
+		.detail {
+			overflow: hidden;
+			width: 95%;
+			font-size: 12px;
+			color: #666;
+		}
+		.price {
+			font-size: 16px;
+			color: #e84c3d;
+		}
+		.icon-buy {
+			position: absolute;
+			right: 10px;
+			bottom: 5px;
+			width: 26px;
+			height: 26px;
+			img {
+				width:100%;
+			}
+		}
+	}
+}
+
+.item-grid {
+	position: relative;
+	overflow-y: scroll;
+	.fullSize;
+	.scroll-grid {
+		font-size: 11px;
+		.grid-title {
+			position: absolute;
+			top:0;
+			z-index: 2;
+			width: 100px;
+			background: #f5f5f5;
+			&:before {
+				.rightLine(#cfcfcf)
+			}
+		}
+		.grid-content {
+			position: relative;
+			.flexBox;
+			.itemCenter;
+			width: 100%;
+			overflow-x: scroll;
+			padding-left:100px;
+		}
+		.grid-col {
+			position: relative;
+			width: 100px;
+			&:before {
+				.rightLine(#cfcfcf)
+			}
+		}
+		.grid-row {
+			position: relative;
+			.flexBox;
+			.itemCenter;
+			.contentCenter;
+			flex: 1;
+			width: 100px;
+			height: 65px;
+			padding: 5px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-align: center;
+			&:before {
+				.bottomLine(#cfcfcf)
+			}
+			&.title {
+				height: 40px;
+				overflow: inherit;
+				background: #f5f5f5;
+				.title-inner {
+					position: absolute;
+					width: 100%;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					.flexBox;
+					.itemCenter;
+					.contentCenter;
+					&:before {
+						.bottomLine(#cfcfcf)
+					}
+				}
+			}
+		}
+
+		.price {
+			color: #e95d50;
+		}
+	}
+}
+
+
+// 展厅外观内饰
+.item-waterfall {
+	.itemDefault();
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	min-height: 200px;
+	.item-inner {
+		position: absolute;
+		padding: 0 1px;
+		margin-bottom: 2px;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 33.333333%;
+		img {
+			display: block;
+		}
+	}
+}
+
+// 展厅换色
+.item-tc {
+	.itemDefault();
+	.item-picture {
+		.thumbnail {
+			padding:0 14%;
+		}
+		.name {
+			display: block;
+			text-align: center;
+			font-size: 11px;
+			color: #333;
+		}
+	}
+	.item-color {
+		.flexBox;
+		.itemCenter;
+		.contentCenter;
+		height: 40px;
+		.btn-color {
+			position: relative;
+			width: 20px;
+			height: 20px;
+			margin:0 6px;
+			border-radius: 50%;
+			background: #ccc;
+			box-shadow: rgba(0,0,0,.5) 0 0 1px;
+			&:after {
+				position: absolute;
+				top: -28%;
+				right: -28%;
+				content: " ";
+				width: 90%;
+				height: 90%;
+				border-radius: 50%;
+				background: rgba(255,255,255,.3);
+			}
+			&:before {
+				border-radius: 50%;
+			}
+			&.cached {
+				display: block;
+			}
+			&.active {
+				width: 24px;
+				height: 24px;
+				margin: 0 4px;
+			}
+		}
+	}
+}
+
+// 活动列表项
+.item-tnd {
+	.itemDefault(15px,15px,15px,15px);
+	.thumbnail {
+		margin-bottom: 10px;
+	}
+	.name {
+		display: block;
+		font-size: 15px;
+		color: #333;
+	}
+	.date {
+		display: -webkit-flex;
+		display: flex;
+		-webkit-align-items: center;
+		align-items: center;
+
+		line-height: 20px;
+		font-size: 12px;
+		.icon {
+			display: inline-block;
+			margin: 0 5px 0 0;
+			width: 12px;
+			height: 12px;
+		}
+	}
+}
+
+
+
+// 展厅列表项
+.item-tnp {
+	.itemDefault(20px,15px,20px,15px);
+	font-size: 15px;
+	.thumbnail {
+		padding: 0 14%;
+		margin-bottom: 10px;
+	}
+	.name {
+		display: block;
+		text-align: center;
+		color: #333;
+	}
+	.price {
+		display: block;
+		text-align: center;
+		color: #e84c3d;
+	}
+
+}

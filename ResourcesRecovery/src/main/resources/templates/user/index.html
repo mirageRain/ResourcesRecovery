@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>郸锋O2O资源回收系统</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel="stylesheet" href="/static/user/css/ui.css" />
+</head>
+<style>
+.mb10 img {
+	width: 100px !important;
+	height: 70px !important;
+	display: block !important;
+	margin-left: 5px;
+}
+
+.fontcl1 {
+	width: 55px;
+	height: 20px;
+	margin: 0 auto;
+}
+
+.fontcl1 span {
+	float: left;
+	height: 19px;
+}
+</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="container">
+		<div id="main">
+			<div id="scroller">
+				<!-- banner轮播图 -->
+				<section class="banner">
+					<div class="swiper-container swiper-container1">
+						<div class="swiper-wrapper bannerwidth">
+							<div class="swiper-slide swiper-slide-duplicate">
+								<a href="/user/torder"> <img src="/static/user/img/banner1.jpg"
+									width="100%">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="/user/torder"> <img src="/static/user/img/banner2.jpg"
+									width="100%">
+								</a>
+							</div>
+							<div class="swiper-slide swiper-slide-duplicate">
+								<a href="/user/torder"> <img src="/static/user/img/banner3.jpg"
+									width="100%">
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="/user/torder"> <img src="/static/user/img/banner4.jpg"
+									width="100%">
+								</a>
+							</div>
+						</div>
+						<div class="swiper-pagination swiper-pagination1"></div>
+					</div>
+				</section>
+			<!-- 下单按钮 -->
+					<section class="slider">
+						<div class="swiper-containerbtn swiper-container2">
+							<div class="swiper-wrapper tuangouwidth">
+								<div class="swiper-slide swiper-slide-duplicate">
+									<ul class="icon-list">
+										<li class="icon">
+											<a href="/user/torder">
+												<span class="icon-circle">
+													<img src="/static/user/img/index-button/recover.png">
+												</span>
+												<span class="icon-desc">预约</span>
+											</a>
+										</li>
+										<li class="icon">
+											<a href="/user/order">
+												<span class="icon-circle">
+													<img src="/static/user/img/index-button/order.png">
+												</span>
+												<span class="icon-desc">订单</span>
+											</a>
+										</li>
+										<li class="icon">
+											<a href="/user/price-compute">
+												<span class="icon-circle">
+													<img src="/static/user/img/index-button/calculator.png">
+												</span>
+												<span class="icon-desc">估算</span>
+											</a>
+										</li>
+										<li class="icon">
+											<a href="/user/recharge">
+												<span class="icon-circle">
+													<img src="/static/user/img/index-button/cash.png">
+												</span>
+												<span class="icon-desc">提现</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+				
+			<div class="index-btn-box">
+					<div class="index-btn-content" id="to-order"><img src="/static/user/img/index-btn-img1.jpg" class="index-btn-img" ></div>
+					<div class="index-btn-content" onclick="javascript:window.location.href='/user/news-help'"><img src="/static/user/img/index-btn-img2.jpg" class="index-btn-img"></div>
+				</div>
+			<div  class="page-center-box">
+				<div>
+					<!--首页限时开始-->
+					<div class="sy_title">
+						<span class="left">价格趋势</span>
+
+					</div>
+					<div class="sy_limit_buy mb10">
+						<div
+							class="locatLabel_switch swiper-container5 swiper-container-horizontal swiper-container-free-mode swiper-container-android">
+							<div class="swiper-wrapper">
+								<div  class="price-box">
+									<a href="/user/price"> <img src="/static/user/img/imgs/paper2.jpg">
+										<p class="center overflow_clear">
+											<span class="price-text">纸箱</span><span class="price-up"></span>
+										</p>
+									</a>
+								</div>
+								<div class="price-box">
+									<a href="/user/price"> <img src="/static/user/img/imgs/metal5.jpg">
+										<p class="center overflow_clear">
+											<span class="price-text">饮料罐</span><span class="price-down"></span>
+										</p>
+									</a>
+								</div>
+								<div  class="price-box">
+									<a href="/user/price"> <img src="/static/user/img/imgs/metal3.jpg">
+										<p class="center overflow_clear">
+											<span class="price-text">铁料</span><span class="price-up"></span>
+										</p>
+									</a>
+								</div>
+								<div class="price-box">
+									<a href="/user/price"> <img src="/static/user/img/imgs/cell2.jpg">
+										<p class="center overflow_clear">
+											<span class="price-text">电池</span><span class="price-down"></span>
+										</p>
+									</a>
+								</div>
+								<div  class="price-box">
+									<a href="/user/price"> <img src="/static/user/img/imgs/else.jpg">
+										<p class="center overflow_clear">
+											<span class="price-text">光盘</span><span class="price-down"></span>
+										</p>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--首价格趋势结束-->
+				<!--新闻部分-->
+				<div class="sy_title">
+					<span class="left">市场焦点</span>
+				</div>
+				<div class="panel-content" style="padding-bottom: 50px">
+					<a class="panel-cont-finance item-ware-list"
+						href="/user/news-detail-1" >
+						<div class="panel-cont-left">
+							<img src="/static/user/img/index-new-1.jpg" alt="">
+						</div>
+						<div class="panel-cont-right">
+							<h2>废品回收价格疯涨 收废品一年有多少利润？</h2>
+							<h3>
+								<em>郸锋资源回收</em><span>2018.04.05</span>
+							</h3>
+						</div>
+					</a> <a class="panel-cont-finance item-ware-list"
+						href="/user/news-detail-2">
+						<div class="panel-cont-left">
+							<img src="/static/user/img/index-new-2.jpg" alt="">
+						</div>
+						<div class="panel-cont-right">
+							<h2>河南废品垃圾可发电30万度废弃物也能变宝</h2>
+							<h3>
+								<em>郸锋资源回收</em><span>2018.04.07</span>
+							</h3>
+						</div>
+					</a> <a class="panel-cont-finance item-ware-list"
+						href="/user/news-detail-3" >
+						<div class="panel-cont-left">
+							<img src="/static/user/img/index-new-3.jpg" alt="">
+						</div>
+						<div class="panel-cont-right">
+							<h2>北京将建筑垃圾建造最大再生主题公园</h2>
+							<h3>
+								<em>郸锋资源回收</em><span>2018.04.11</span>
+							</h3>
+						</div>
+					</a>
+					<a class="panel-cont-finance item-ware-list"
+						href="/user/news-detail-4">
+						<div class="panel-cont-left">
+							<img src="/static/user/img/index-new-4.jpg" alt="">
+						</div>
+						<div class="panel-cont-right">
+							<h2>原来，废塑料行业发展的高潮期是这个时候！</h2>
+							<h3>
+								<em>郸锋资源回收</em><span>2018.04.11</span>
+							</h3>
+						</div>
+					</a>
+					<a class="panel-cont-finance item-ware-list"
+						href="/user/news-help" >
+						<div class="panel-cont-left">
+							<img src="/static/user/img/index-btn-img2.jpg" alt="">
+						</div>
+						<div class="panel-cont-right">
+							<h2>郸锋资源回收系统使用说明</h2>
+							<h3>
+								<em>郸锋资源回收</em><span>2018.03.22</span>
+							</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer">
+		<div>
+			<a id="to-user-index" >
+				<div class="icon i-1 on"></div>
+				<p>首页</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-user-price">
+				<div class="icon i-3 "></div>
+				<p>价格</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-user-order">
+				<div class="icon i-7"></div>
+				<p>订单</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-user-center">
+				<div class="icon i-4"></div>
+				<p>我的</p>
+			</a>
+		</div>
+	</footer>
+</body>
+
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/static/user/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/static/user/js/hmt.js"></script>
+<script type="text/javascript" src="/static/user/js/index.js"></script>
+<script src="/static/user/js/swiper.min.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js" ></script>
+<script type="text/javascript" charset="utf-8">
+
+$(function() {
+	mui.init();
+	$("#to-order")[0].addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/user/torder',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	
+	document.getElementById("to-user-index").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/user/index',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	document.getElementById("to-user-price").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/user/price',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	document.getElementById("to-user-order").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/user/order',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	});
+	document.getElementById("to-user-center").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/user/center',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	/* element.addEventListener('tap',function(){
+	    //点击响应逻辑
+	}); */
+	$("#loading").hide();
+});
+</script>
+</html>

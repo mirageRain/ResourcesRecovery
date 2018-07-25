@@ -1,0 +1,481 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>结算废品</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/price.css">
+<link rel="stylesheet" href="/static/user/css/theme.css" />
+<link rel="Shortcut Icon" href="/favicon.ico">
+<style>
+.hasManyCitytwo .fanhui i {
+    font-size: 20px ;
+}
+	    .categoryBox .categoryContent .categoryList .categoryItem {
+        position: relative;
+        float: left;
+        height: 100px;
+        line-height:64px;
+        width: 100%;
+        padding: 0 0 5px;
+        text-align: left;
+    }
+	    .categoryBox .categoryContent .categoryList .categoryItem .cursorArea {
+        position: absolute;
+        top: 5px;
+        left:20px;
+        width: 100px;
+        height: 70px;
+        cursor: pointer;
+        overflow: hidden;
+        
+        margin-left: 0 !important;
+    }
+    .categoryBox .categoryContent .categoryList .categoryItem .cursorArea1 {
+        position: absolute;
+        top: 3px;
+        right: 0px;
+        width: 125px;
+        height: 70px;
+        cursor: pointer;
+      
+    }
+	    .categoryBox .categoryContent .categoryList .categoryItem .text {
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+        font-size:14px;
+        display: block;
+        margin-left: 5px ;
+    }
+	.categoryBox .categoryContent .categoryList .categoryItem .text1 {
+        height: 15px;
+        line-height: 15px;
+        margin: 5px 0;
+        margin-left: 5px ;
+        overflow: hidden;
+        font-size: 12px;
+        display: block;
+		color:red;
+    }
+	.yes{
+		position:absolute;
+		right:30px;
+		top:5px;
+        width:100px;
+        height:40px;
+        background-color: #ff5f32;
+        color: #fff;
+    }
+    .price{
+        width:auto;
+        margin-top:15px;
+        margin-left: 15px;
+        font-size: 18px;
+        
+    }
+    .allprice{
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+	!function() {
+		function a() {
+			var clientWidth = document.documentElement.clientWidth > 640 ? 640
+					: document.documentElement.clientWidth;
+			document.documentElement.style.fontSize = clientWidth / 7.5 + "px";
+		}
+		var b = null;
+		window.addEventListener("resize", function() {
+			clearTimeout(b), b = setTimeout(a, 300)
+		}, !1), a()
+	}(window);
+</script>
+</head>
+
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:window.location.href='/business/order'" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit" >结算废品</div>
+	</header>
+	<div id="contentbox">
+		<div class="menu" id="menu"></div>
+
+		<div class="categoryBox">
+			<div class="categoryContent"></div>
+		</div>
+	</div>
+	<footer id="footer">
+          <div class="price">总价：￥<span class="allprice" id="sum">0</span></div>
+		   <button class="yes" id="sub-btn">完成结算</button>			
+		</footer>
+
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+
+<script type="text/javascript">
+	var doing = true;
+	var category = -1;
+
+	var maskIsHide = true;//阻止
+	var pushState = null;
+
+	// 获取手机型号
+	var ignorePhoneModel = [ 'sm-g9200', 'sm-g9208', 'sm-c7000', 'notSupport' ];
+	function getPhoneModel() {
+		if (typeof history.pushState == "undefined") {
+			return "notSupport";
+		}
+
+		var UA = navigator.userAgent;
+		var model = '';
+		try {
+			var _model = UA.match(/;\s?([^;]+)\s?Build/i);
+			if (_model) {
+				_model = _model[1];
+				model = _model.trim();
+			}
+		} catch (e) {
+		}
+		return model.toLowerCase();
+	}
+
+	window.onpopstate = function(event) {
+		if ($.os.android && ignorePhoneModel.indexOf(getPhoneModel()) == -1) {
+			if (pushState && pushState.backevent) {
+				$(document.body).trigger(pushState.backevent);
+			}
+			pushState = event.state;
+		}
+		$(document).trigger('history:back', event.state);
+	};
+	//滚动触发菜单栏
+	function pageScroll() {
+		var _scrollTop = $(".categoryBox").scrollTop();
+		var _height = -(document.documentElement.clientHeight || $(window)
+				.height()) / 2 + 25;
+		var index = 1;
+		$(".categoryList").each(function() {
+			_height += $(this).height();
+			if (_height > _scrollTop) {
+				return;
+			}
+			index++;
+		});
+		$(".menu .menuItem").removeClass("selected");
+		$(".menu .menuItem:nth-child(" + index + ")").addClass("selected");
+	}
+
+	$(function() {
+		var _category = window.location.search.match(/[\?&]category=(\d+)&?/);
+		if (null != _category) {
+			category = _category[1];
+		}
+
+		//点击菜单定位
+		$(".menu").on("click", ".menuItem", function() {
+			doing = false;
+			var self = $(this);
+			if (!self.hasClass("selected")) {
+				category = self.attr("category");
+				$(".menu .menuItem").removeClass("selected");
+				self.addClass("selected");
+				$(".categoryBox").scrollTop(self.attr("scroll"));
+			}
+			setTimeout(function() {
+				doing = true;
+			}, 100)
+		});
+
+		//进入分类
+		$(".categoryItem").on("click", function() {
+			var url = $(this).data("url");
+			if (!url) {
+				return false;
+			}
+			$(this).addClass("clicked");
+			setTimeout(function() {
+				$(this).removeClass('clicked');
+			}, 1000);
+			if (ignorePhoneModel.indexOf(getPhoneModel()) == -1) {
+				var scrollTop = $("body").scrollTop();
+				history.replaceState({
+					scrollTop : scrollTop
+				}, document.title, "?category=" + category);
+			}
+			var secCategory = $(this).data('seccategory');
+			//            wptRedirect(url, 200);
+		});
+
+		//回退定位高度
+		if (ignorePhoneModel.indexOf(getPhoneModel()) == -1) {
+			window.onpopstate = function(event) {
+				if (null != event.state
+						&& 'undefined' != typeof event.state.scrollTop) {
+					$("body").scrollTop(event.state.scrollTop);
+				}
+			};
+		}
+
+		// 初始化左边栏选项
+		$(".menu .menuItem[category='" + category + "']").addClass('selected');
+		$(".categoryList[category='" + category + "']").show();
+
+		//计算各分类高度
+		var _dataHeight = -50;
+		$(".categoryList").each(
+				function(i, item) {
+					if (i == 0) {
+						$(".menu .menuItem:nth-child(" + (1) + ")").attr(
+								"scroll", 0);
+					} else {
+						$(".menu .menuItem:nth-child(" + (i + 1) + ")").attr(
+								"scroll", _dataHeight);
+					}
+					_dataHeight += $(item).height();
+				});
+
+		//页面滚动
+		$(".categoryBox").on('scroll', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			if (doing) {
+				pageScroll();
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+$(function() {
+	var orderId = getUrlArgObject()['orderId'];
+	var goodsTypeJson = [];
+	var goodsUnitJson = [];
+	var goods = [];
+	$.ajax({
+		"url" : "/user/goods_type",
+		"contentType" : "application/json",
+		"type" : "get",
+		"async" : false,
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			if (returnData.success) {
+				$.each(returnData.data, function(i, item) {
+					goodsTypeJson[item.typeId] = item.name;
+				});
+
+			} else {
+				mui.alert(returnData.errMsg, "提示");
+			}
+
+		}
+	});
+
+	$.ajax({
+		"url" : "/user/goods_unit",
+		"contentType" : "application/json",
+		"type" : "get",
+		"async" : false,
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			if (returnData.success) {
+				$.each(returnData.data, function(i, item) {
+					goodsUnitJson[item.unitId] = item.name;
+				});
+			} else {
+				mui.alert(returnData.errMsg, "提示");
+			}
+
+		}
+	});
+
+	var typeBuffer = new StringBuffer();
+	for (var i = 0; i < goodsTypeJson.length; i++) {
+		if (goodsTypeJson[i] != null) {
+			typeBuffer.append('<div class="menuItem" category="');
+			typeBuffer.append(i);
+			typeBuffer.append('" >');
+			typeBuffer.append(goodsTypeJson[i]);
+			typeBuffer.append('</div>');
+		}
+	}
+	$("#menu").append(typeBuffer.toString());
+
+	$.ajax({
+		"url" : "/user/goods",
+		"contentType" : "application/json",
+		"type" : "get",
+		"async" : false,
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			if (returnData.success) {
+				$.each(returnData.data, function(i, item) {
+					if (goods[item.childTypeId] == null)
+						goods[item.childTypeId] = new Array();
+					goods[item.childTypeId].push(item);
+				});
+			} else {
+				mui.alert(returnData.errMsg, "提示");
+			}
+
+		}
+	});
+	var categoryListBuffer = new StringBuffer();
+	var tempMark=true;
+	for (var i = 1; i < goodsTypeJson.length; i++) {
+		if (goodsTypeJson[i] != null) {
+			if(tempMark){
+				categoryListBuffer
+				.append('<div class="categoryList first" category="');
+				tempMark=false;
+			}else
+				categoryListBuffer
+				.append('<div class="categoryList" category="');
+			
+			categoryListBuffer.append(i);
+			categoryListBuffer.append('" ><div class="title">');
+			categoryListBuffer.append(goodsTypeJson[i]);
+			categoryListBuffer.append('</div>');
+			for (var j = 0; j < goods[i].length; j++) {
+				categoryListBuffer
+						.append('<div class="categoryItem" data-goods-id="');
+				categoryListBuffer.append(goods[i][j].goodsId);				
+				categoryListBuffer.append('"><div class="categoryIcon lazyLoad"></div><div class="cursorArea" style="background:url(/static/upload/img/goods/');
+				categoryListBuffer.append(goods[i][j].imageUrl);
+				categoryListBuffer.append(') no-repeat center;background-size:cover"></div><div class="cursorArea1"><span class="text">');
+				categoryListBuffer.append(goods[i][j].name);
+				categoryListBuffer.append('</span> <span class="text1">');
+				categoryListBuffer.append("￥" + '<span class="univalent">'+goods[i][j].price+'</span>'+"/"
+						+ goodsUnitJson[goods[i][j].unitId]);
+				categoryListBuffer.append('</span><div class="mui-numbox" data-numbox-step="1" data-numbox-min="0" data-numbox-max="10000"><button class="mui-btn mui-numbox-btn-minus" type="button">-</button><input class="mui-numbox-input" type="number" /><button class="mui-btn mui-numbox-btn-plus" type="button">+</button></div></div></div>');
+			}
+			categoryListBuffer.append('</div>');
+		}
+	}
+	$(".categoryContent").append(categoryListBuffer.toString());
+	
+	$("#loading").hide();
+	
+	
+	//恢复订单状态
+	$.ajax({
+		"url" : "/user/orders/" + orderId,
+		"contentType" : "application/json",
+		"type" : "get",
+		"async" : false,
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			if (returnData.success) {
+				if(typeof(returnData.data.collectItem)!="undefined")
+				$.each(
+						returnData.data.collectItem,
+						function(i, item) {
+							$(".categoryItem[data-goods-id="+item.goodsId+"]").find(".mui-numbox").find(".mui-numbox-input").val(item.number);
+							
+						}
+				);
+			}
+		}
+	});
+	
+	
+
+	$(".menuItem[category='1']").click();
+	 var sum=0;
+	 $(".mui-numbox-input").change(function(){
+			if($(this).val()<0||$(this).val()>10000){
+				mui.alert("请输入0-10000的数量", "提示");
+				$("#sum").text("err");
+			}
+				
+			else{
+				sum=0;
+				 $(".categoryItem").each(function(){
+					 
+					sum+=Number($(this).find(".mui-numbox-input").val())*Number($(this).find(".univalent").text());
+				});
+				$("#sum").text(parseFloat(sum.toFixed(2)));
+			}	
+		});
+		
+	
+	$("#sub-btn").click(function(){
+		var orderData = {};
+		var collectItem=new Array();
+		
+		$(".categoryItem").each(function(){
+			var item={};
+			item.orderId = orderId;
+			item.goodsId = $(this).attr("data-goods-id");
+			item.number = $(this).find(".mui-numbox-input").val();
+			if(item.number>0){
+				collectItem.push(item);
+			}
+		});
+		orderData.orderId = orderId;
+		orderData.collectItem = collectItem;
+		
+		$.ajax({
+			"url" : "/business/orders/statements/"+orderId,
+			"data" : JSON.stringify(orderData),
+			"contentType" : "application/json",
+			"type" : "put",
+			"error" : function() {
+				mui.alert( "服务器繁忙", "提示");
+			},
+			"success" : function(data1) {
+				if (data1.success) { 
+					mui.toast('保存成功',{ duration:'long', type:'div' }); 
+					 setTimeout(function () { window.location.href = '/business/dd-confirm?orderId='+orderId}, 500);
+				} else {
+					mui.alert( data1.errMsg, "提示");
+				}
+
+			}
+		});
+	});
+});
+</script>
+
+</html>

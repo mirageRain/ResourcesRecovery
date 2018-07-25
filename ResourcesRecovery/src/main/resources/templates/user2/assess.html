@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>评价</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/common.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/index.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/mui.min.css}"/>
+		<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+		<script th:src="@{/static/user/js/jquery-1.8.2.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+		<script th:src="@{/static/user/js/hmt.js}" type="text/javascript"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+		<script th:src="@{/static/user/js/swiper.min.js}" type="text/javascript" ></script>
+	</head>
+	<body>
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">
+				评价
+			</div>		
+		</header>
+	    <div id="main" class="mui-clearfix">
+	    	<div class="assess clearfloat">
+	    		<div class="top clearfloat box-s">
+	    			<div class="tu fl clearfloat">
+	    				<img th:src="@{/static/user/img/21.jpg}"/>
+	    			</div>
+	    			<div class="pinfen fl clearfloat">
+	    				<p class="tit">XXX</p>
+	    				<br/>
+	    				<div class="assess-right1">
+	    					<img onclick="level1(1)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level1(2)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level1(3)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level1(4)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level1(5)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<textarea rows="4" class="box-s" placeholder="请写下对本次使用的感受吧，对他人帮助很大哦" ></textarea>
+	    		<div class="bottom clearfloat box-s fl">
+	    			<ul>
+						<li>
+							时间准确率&nbsp;&nbsp;&nbsp;
+						</li>
+						<li class="assess-right2">
+	    					<img onclick="level2(1)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level2(2)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level2(3)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level2(4)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level2(5)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							服务满意度&nbsp;&nbsp;&nbsp;
+						</li>
+						<li class="assess-right3">
+	    					<img onclick="level3(1)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level3(2)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level3(3)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level3(4)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level3(5)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							价格满意度&nbsp;&nbsp;&nbsp;
+						</li>
+						<li class="assess-right4">
+	    					<img onclick="level4(1)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level4(2)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level4(3)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level4(4)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+							<img onclick="level4(5)" th:src="@{/static/user/img/detail-iocn001.png}"/>
+						</li>
+					</ul>
+	    		</div>
+	    	</div>
+	    </div>	 
+     	<a href="#" class="address-add fl ra3">提交</a>
+	</body>
+	
+	<script type="text/javascript" th:src="@{/static/user/js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript">
+		function level1(s)       
+		{			
+			var str = '';		
+			var k = 6-s;			
+			for(i=1;i<s+1;i++)   
+			{	
+				str += "<img onclick='level1("+i+")' th:src='img/detail-iocn01.png'/>";
+			}
+			for(j=1;j<k;j++)
+			{
+				var d=j+s
+				str += "<img onclick='level1("+d+")' th:src='img/detail-iocn001.png'/>";
+			}		
+			$('.assess-right1').html(str);
+		}
+		function level2(s)       
+		{			
+			var str = '';		
+			var k = 6-s;			
+			
+			for(i=1;i<s+1;i++)   
+			{	
+				str += "<img onclick='level2("+i+")' th:src='img/detail-iocn01.png'/>";
+			}
+			for(j=1;j<k;j++)
+			{
+				var d=j+s
+				str += "<img onclick='level2("+d+")' th:src='img/detail-iocn001.png'/>";
+			}		
+			$('.assess-right2').html(str);
+		}
+		function level3(s)       
+		{			
+			var str = '';		
+			var k = 6-s;			
+			for(i=1;i<s+1;i++)   
+			{	
+				str += "<img onclick='level3("+i+")' th:src='img/detail-iocn01.png'/>";
+			}
+			for(j=1;j<k;j++)
+			{
+				var d=j+s
+				str += "<img onclick='level3("+d+")' th:src='img/detail-iocn001.png'/>";
+			}		
+			$('.assess-right3').html(str);
+		}
+		function level4(s)       
+		{			
+			var str = '';		
+			var k = 6-s;			
+			for(i=1;i<s+1;i++)   
+			{	
+				str += "<img onclick='level4("+i+")' th:src='img/detail-iocn01.png'/>";
+			}
+			for(j=1;j<k;j++)
+			{
+				var d=j+s
+				str += "<img onclick='level4("+d+")' th:src='img/detail-iocn001.png'/>";
+			}		
+			$('.assess-right4').html(str);
+		}
+	</script>
+</html>

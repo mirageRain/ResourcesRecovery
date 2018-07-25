@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加收货地址</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/common.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/index.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/mui.min.css}" />
+<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+<script th:src="@{/static/user/js/jquery-1.8.2.min.js}"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/hmt.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/swiper.min.js}"></script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="keywords" content="地址选择" />
+<meta name="description" content="地址选择" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/address.css}">
+
+<style type="text/css">
+select {
+	font: 微软雅黑;
+	color: black;
+	font-size: 15px;
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	border: none;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+	select: :-ms-expand{ display: none;
+}
+</style>
+
+<style type="text/css">
+		.lastarea {
+ 		 	width:25% !important;
+ 		 }
+ 		 #addressSelectWrapper{
+ 		 z-index:999;
+ 		 }
+		</style>
+</head>
+<body>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:history.go(-1)" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">添加地址</div>
+		<a id="save" href="#" class="fr baocun">保存</a>
+	</header>
+	<div id="container">
+		<div id="main" class="mui-clearfix add-address">
+			<div class="plist clearfloat data">
+				<ul>
+					<li class="clearfloat"><a href="#">
+							<p class="fl">姓名</p> <input type="text" class="fr shuru" name=""
+							id="applyName" value="" placeholder="请输入昵称" />
+					</a></li>
+					<li class="clearfloat"><a href="#">
+							<p class="fl">联系电话</p> <input type="text" class="fr shuru"
+							name="" id="phone" value="" placeholder="请输入手机号码" />
+					</a></li>
+
+
+
+					<label for="Addr" id="areaLabel" class="address"> <span>&nbsp;&nbsp;&nbsp;&nbsp;所在地区</span>
+						<input type="text" name="Addr" id="Addr" readonly
+						placeholder="    请选择地区">
+					</label>
+					<div id="addressSelectWrapper">
+						<div id="addressSelect">
+							<div class="tip">
+								<h3>所在地区</h3>
+								<button type="button" id="cancel"></button>
+							</div>
+							<div id="address">
+								<ul class="selected-address">
+									<li class="lastarea" id="lastprovince">请选择</li>
+									<li class="lastarea" id="lastcity">请选择</li>
+									<li class="lastarea" id="lastarea">请选择</li>
+									<li class="lastarea" id="lasttown">请选择</li>
+								</ul>
+								<div class="address-content">
+									<ul id="province"></ul>
+									<ul id="city"></ul>
+									<ul id="area"></ul>
+									<ul id="town"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</ul>
+
+			</div>
+			<textarea name="" rows="4" cols="" placeholder="请填写详细地址，不少于5个字"
+				class="textare box-s" id="addressText"></textarea>
+			<div class="address-btn clearfloat">
+				<span class="szwmr fl">设为默认</span> <a id="isDefault" href="#"
+					class="toggle toggle--on fr"></a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script th:src="@{/static/user/js/jquery.min.js}"></script>
+	<script th:src="@{/static/user/js/city.js}"></script>
+
+
+	<script th:inline="javascript">
+		
+		function getAddrJson(){
+			var json;
+			$.ajax({
+				url: "http://passer-by.com/data_location/list.json",
+				type: 'GET',
+				crossDomain: true,
+				async: false,
+				dataType: 'json',
+				success: function (data) {
+					json=data;
+				}
+				
+			});
+			return json;
+		}
+		
+		function getAddrByCode(code,json){
+			var addr="";
+			code=code.toString();
+			
+			var towncode=code ;                                           //街道乡镇编码
+			var provinceCode=code.substring(0, 2) + "0000";               //省份编码
+			var cityCode=code.substring(0, 4) + "00";                     //城市编码
+			var areaCode=code.substring(0, 6);                            //地区编码
+			var data;
+			if(json==null)
+				data=getAddrJson();
+			else
+				data=json;
+			addr+=data[provinceCode];
+			if(provinceCode!=cityCode&&data[cityCode]!=null)
+				addr+=data[cityCode];	
+			addr+=data[areaCode];
+					//获取街道数据
+					$.ajax({
+						url: 'http://passer-by.com/data_location/town/' + areaCode + '.json',
+						dataType: 'json',
+						async: false,
+						success: function(town) {
+						addr+=town[code];
+						}
+					});
+			return addr;
+				
+			}
+		
+		
+			$(function(){
+			    // 地址选择器遮罩层打开与关闭
+				$("#areaLabel").click(function(e){
+				    $("#addressSelectWrapper").show();
+				    e.stopPropagation();
+				});
+				$(document).click(function () {
+                    $("#addressSelectWrapper").hide();
+                });
+				$("#cancel").click(function () {
+                    $("#addressSelectWrapper").hide();
+                });
+                $("#addressSelect").click(function (e) {
+					e.stopPropagation();
+                });
+
+                initAddress();
+                       
+               
+                /*<![CDATA[*/  
+  			  
+			    var addressId = [[${addressId}]];  
+			  
+				/*]]>*/
+			
+				
+                $.ajax({
+    				"url" : "/user/collect_address/"+addressId,							
+    				"contentType": "application/json",
+    				"type" : "get",
+    				"error" : function() {
+    					//alert("数据获取错误");
+    				},
+    				"success" : function(data1) {
+    					if (data1.success) {
+    						$("#applyName").val(data1.data.applyName);
+    						$("#phone").val(data1.data.phone);
+    						$("#Addr").val(data1.data.province+data1.data.city+data1.data.district+data1.data.town);
+    						$("#Addr").data("code",data1.data.townCode);
+    						$("#addressText").val(data1.data.address);
+    						if(data1.data.isDefault==1)
+    							$('.toggle').removeClass('toggle--on').addClass('toggle--off')
+    		             
+    					} else {
+    						alert(data1.errMsg);
+    					}
+
+    				}
+    			});
+                
+                
+                $("#save").click(function(){
+                	
+                	
+                	var addressData = {};
+                	addressData.applyName=$("#applyName").val();
+                	addressData.phone=$("#phone").val();
+                	addressData.townCode=$("#Addr").data("code");
+                	addressData.address=$("#addressText").val();
+                	addressData.isDefault=$("#isDefault").hasClass("toggle--off")?1:0;
+                	
+                	$.ajax({
+        				"url" : "/user/collect_address/"+addressId,
+        				"data": JSON.stringify(addressData),								
+        				"contentType": "application/json",
+        				"type" : "put",
+        				"error" : function() {
+        					layer.msg("服务器繁忙，请稍后再试", {
+        						icon : 5,
+        						anim : 0
+        					});
+        				},
+        				"success" : function(data1) {
+        					if (data1.success) {
+        						//alert("更新成功");
+        		                window.location.href=document.referrer;
+        					} else {
+        						alert(data1.errMsg);
+        					}
+
+        				}
+        			});
+                	
+                
+    				
+    				});
+			});
+
+            //初始化地址选择
+            function initAddress() {
+                $("#Addr").cityLinkage({
+                    containerId: 'addressSelectWrapper',
+                    getSelectedCode:function(){return $("#Addr").data("code");},
+                    callback:function(data) {
+                        $("#Addr").val(data.addr).data("code",data.town.code);
+                    }
+                });
+            }
+
+		</script>
+
+
+
+	<!--默认按钮-->
+	<script type="text/javascript">
+	$('.toggle').click(function(e){
+	
+		var toggle = this;
+		
+		e.preventDefault();
+	
+		$(toggle).toggleClass('toggle--on').toggleClass('toggle--off').addClass('toggle--moving');
+	
+		setTimeout(function(){
+			$(toggle).removeClass('toggle--moving');
+		}, 200)
+		
+	});
+	</script>
+
+</body>
+</html>

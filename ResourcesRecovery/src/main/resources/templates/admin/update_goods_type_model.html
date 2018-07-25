@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/newLayui.css}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+</head>
+<body>
+	<div
+		style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">分类名称</label>
+				<div class="layui-input-block">
+					<input id="type-name" type="text" name="type-name" value=""
+						placeholder="请设置分类名称" class="layui-input">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript"
+	th:src="@{/static/admin/plugins/layuiNew/layui.js}"></script>
+
+<script type="text/javascript">
+	layui.use('jquery', function() {
+		var $ = layui.jquery;
+		var rowDate = window.parent.tempRowData;
+		$("#type-name").val(rowDate.name);
+		
+	});
+
+	layui.use('form', function() {
+		var form = layui.form;
+		var $ = layui.jquery;
+		$(".layui-anim-upbit").css("color","#000");
+	});
+</script>
+</html>
+
+

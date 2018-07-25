@@ -1,0 +1,12 @@
+td span {
+	color: #c2c2c2;
+}
+td {
+	text-align: center;
+}
+th {
+	margin: 0 auto;
+}
+.layui-table, .layui-elem-quote {
+	padding: 10px;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/main.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/layui.css}">
+</head>
+
+<body>
+	<div class="container">
+		<blockquote class="layui-elem-quote">
+			<strong>系统主页</strong>
+		</blockquote>
+		<table class="layui-table">
+			<thead>
+				<tr class="text-c">
+					<th>统计</th>
+					<th>访问量</th>
+					<th>查询量</th>
+					<th>访问次数</th>
+					<th>用户</th>
+					<th>管理员</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-c">
+					<td>总数</td>
+					<td>92</td>
+					<td>9</td>
+					<td>0</td>
+					<td>8</td>
+					<td>20</td>
+				</tr>
+				<tr class="text-c">
+					<td>今日</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr class="text-c">
+					<td>昨日</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr class="text-c">
+					<td>本周</td>
+					<td>2</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr class="text-c">
+					<td>本月</td>
+					<td>2</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+			</tbody>
+		</table>
+<!-- 		private String serverIP;        //服务器IP  
+    private String serverURL;       //服务器Url  
+    private String serverType;      //服务器类型  
+    private Date serverTime;        //服务器时间  
+      
+    private String osName;          //操作系统名称  
+    private String osVersion;       //操作系统版本  
+    private String userName;        //用户名称  
+    private String userHome;        //用户主目录  
+    private String osTimeZone;      //操作系统时区  
+      
+    private String memTotal;        //物理内存总量  
+    private String memUsed;         //已使用的物理内存  
+    private String memFree;         //物理内存剩余量  
+      
+    private int cpuNum;             //cpu总数  
+    private String cpuUsageRate;    //cpu使用率
+    private String cpuWaitRate;		//CPU等待率
+    
+    
+    private String javaPath;        //java安路径  
+    private String javaVendor;      //java运行时供应商  
+    private String javaVersion;     //java版本  
+    private String javaName;        //java运行时名称  
+    private String jvmVersion;      //java虚拟机版本  
+    private String jvmTotalMemory;  //java虚拟机总内存  
+    private String jvmFreeMemory;   //java虚拟机剩余内存   -->
+		<table class="layui-table">
+			<thead>
+				<tr>
+					<th colspan="2" scope="col">服务器信息</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>服务器计算机名</th>
+					<td><span  >MIRAGE</span></td>
+				</tr>
+				<tr>
+					<th>服务器计算机域名</th>
+					<td><span>MIRAGE</span></td>
+				</tr>
+				<tr>
+					<td>服务器IP地址</td>
+					<td><span >10.170.198.125</span></td>
+				</tr>
+				<tr>
+					<td>服务器域名</td>
+					<td><span >wx.mabotao.com</span></td>
+				</tr>
+				<tr>
+					<td>服务器端口</td>
+					<td><span>80</span></td>
+				</tr>
+				<tr>
+					<td>服务器版本</td>
+					<td><span >Apache Tomcat/8.5.15</span></td>
+				</tr>
+				<tr>
+					<td>本文件所在文件夹</td>
+					<<td><span>/var/</span></td>
+				</tr>
+				<tr>
+					<td>服务器操作系统</td>
+					<td><span >Linux</span></td>
+				</tr>
+				<tr>
+					<td>系统所在文件夹</td>
+					<td><span >/</span></td>
+				</tr>
+				<tr>
+					<td>服务器脚本超时时间</td>
+					<td><span ></span></td>
+				</tr>
+				<tr>
+					<td>服务器的语言种类</td>
+					<td><span >JAVA</span></td>
+				</tr>
+				<tr>
+					<td>JAVA 版本</td>
+					<td><span>1.8.0_91</span></td>
+				</tr>
+				<tr>
+					<td>服务器当前时间</td>
+					<td><span></span></td>
+				</tr>
+				<tr>
+					<td>服务器IE版本</td>
+					<td><span></span></td>
+				</tr>
+				<tr>
+					<td>服务器上次启动到现在已运行</td>
+					<td><span"></span></td>
+				</tr>
+				<tr>
+					<td>逻辑驱动器</td>
+					<td><span>1</span></td>
+				</tr>
+				<tr>
+					<td>CPU 总数</td>
+					<td><span>1</span></td>
+				</tr>
+				<tr>
+					<td>CPU 类型</td>
+					<td><span></span></td>
+				</tr>
+				<tr>
+					<td>内存总量</td>
+					<td><span>2048M</span></td>
+				</tr>
+				<tr>
+					<td>占用内存</td>
+					<td><span>1420M</span></td>
+				</tr>
+				<tr>
+					<td>JAVA所占内存</td>
+					<td><span >1020M</span></td>
+				</tr>
+				<tr>
+					<td>当前Session数量</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>当前系统用户名</td>
+					<td>ADMIN</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

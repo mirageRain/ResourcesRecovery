@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单详情</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/common.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/index.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/mui.min.css}" />
+<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+<script th:src="@{/static/user/js/jquery-1.8.2.min.js}"
+	type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/static/user/js/hmt.js}" type="text/javascript"></script>
+
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/datedropper.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/timedropper.min.css}">
+<style type="text/css">
+.demo {
+	margin: 8px auto 2px auto;
+	width: 320px
+}
+
+.input {
+	padding: 5px;
+	border: 1px solid #d3d3d3
+}
+</style>
+</head>
+<body>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:history.go(-1)" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">确认订单</div>
+	</header>
+
+	<div id="container">
+		<div id="main">
+			<section class="menu_wrap pay_wrap">
+				<ul class="boxs boxstwo">
+					<li><a class="">选择方式：</a>&nbsp;&nbsp; <a
+						class="btn_express pick_in_store">上门回收</a></li>
+					<li class="li_delivery" id="addrContent"
+						style="cursor: pointer; color: #8f8f94"><strong>选择上门地址：</strong>
+						<strong> <span id="addrApplyName"></span> <span
+							id="addrPhone"></span><br> <span id="addrAddress"></span>
+					</strong>
+						<div class="fr">
+							<i class="ico_arrow"></i>
+						</div></li>
+					<li id="show_arrive_date"><a href="javascript:void(0);"
+						class="date"> <strong>预约时间：</strong>
+							<div class="demo">
+								<p>
+									请选择日期：<input type="text" class="input" id="pickdate" />
+								</p>
+								<br />
+								<p>
+									请选择时间：<input type="text" class="input" id="picktime" />
+								</p>
+							</div>
+					</a></li>
+					<li><a href="javascript:void(0);"> <strong>备注：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <input
+							type="text" name="" id="desc" value="" placeholder="对您要回收的商品进行简介" />
+					</a></li>
+				</ul>
+			</section>
+
+			<div class="fixed">
+				<span class="fr btn"> <a style="cursor: pointer"
+					class="comm_btn" id="submit_order">确认下单</a>
+				</span>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript"
+		th:src="@{/static/user/js/jquery-1.7.1.min.js}"></script>
+	<script th:src="@{/static/user/js/datedropper.min.js}"></script>
+	<script th:src="@{/static/user/js/timedropper.min.js}"></script>
+	<script>
+		function getAddrJson() {
+			var json;
+			$.ajax({
+				url : "http://passer-by.com/data_location/list.json",
+				type : 'GET',
+				crossDomain : true,
+				async : false,
+				dataType : 'json',
+				success : function(data) {
+					json = data;
+				}
+
+			});
+			return json;
+		}
+
+		function getAddrByCode(code, json) {
+			var addr = "";
+			code = code.toString();
+
+			var towncode = code; //街道乡镇编码
+			var provinceCode = code.substring(0, 2) + "0000"; //省份编码
+			var cityCode = code.substring(0, 4) + "00"; //城市编码
+			var areaCode = code.substring(0, 6); //地区编码
+			var data;
+			if (json == null)
+				data = getAddrJson();
+			else
+				data = json;
+			addr += data[provinceCode];
+			if (provinceCode != cityCode && data[cityCode] != null)
+				addr += data[cityCode];
+			addr += data[areaCode];
+			//获取街道数据
+			$.ajax({
+				url : 'http://passer-by.com/data_location/town/' + areaCode
+						+ '.json',
+				dataType : 'json',
+				async : false,
+				success : function(town) {
+					addr += town[code];
+				}
+			});
+			return addr;
+
+		}
+
+		$(function() {
+
+			//返回的是对象形式的参数  
+			function getUrlArgObject() {
+				var args = new Object();
+				var query = location.search.substring(1);//获取查询串  
+				var pairs = query.split(",");//在逗号处断开  
+				for (var i = 0; i < pairs.length; i++) {
+					var pos = pairs[i].indexOf('=');//查找name=value  
+					if (pos == -1) {//如果没有找到就跳过  
+						continue;
+					}
+					var argname = pairs[i].substring(0, pos);//提取name  
+					var value = pairs[i].substring(pos + 1);//提取value  
+					args[argname] = unescape(value);//存为属性  
+				}
+				return args;//返回对象  
+			}
+			var addrId = getUrlArgObject()['addrId'];
+			var addr;
+			if (addrId != null) {
+				$.ajax({
+					"url" : "/user/collect_address/" + addrId,
+					"contentType" : "application/json",
+					"type" : "get",
+					"async" : false,
+					"error" : function() {
+						alert("服务器繁忙");
+					},
+					"success" : function(returnData) {
+						if (returnData.success)
+							addr = returnData.data;
+					}
+				});
+
+				$("#addrApplyName").html(addr.applyName);
+				$("#addrPhone").html("&nbsp;&nbsp;&nbsp;" + addr.phone);
+				$("#addrAddress")
+						.html(
+								"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+										+ addr.province+addr.city+addr.district+addr.town+addr.address);
+
+			}
+
+			$("#submit_order").click(function() {
+
+
+				var orderData = {};
+				orderData.collectAddressId = addrId;
+				orderData.describe = $("#desc").val();
+				orderData.applyTime = new Date();
+				orderData.expectTime = new Date($("#pickdate").val() + " " + $("#picktime").val());
+				orderData.enable = 1;
+				orderData.state = 1;
+				orderData.collectTimeType = 2;
+
+				$.ajax({
+					"url" : "/user/orders",
+					"contentType" : "application/json",
+					"type" : "post",
+					"data" : JSON.stringify(orderData),
+					"error" : function() {
+						alert("服务器繁忙");
+					},
+					"success" : function(returnData) {
+						//alert("in");
+						if (returnData.success)
+							window.location.href="/user/xiadan-success?orderId="+returnData.data;
+						else
+							alert(returnData.errMsg);
+					}
+				});
+
+			});
+
+			$("#addrContent").click(function() {
+				window.location.href = "/user/select-address";
+			});
+
+		});
+		$("#pickdate").dateDropper({
+			animate : false,
+			format : 'Y-m-d',
+			maxYear : '2020'
+		});
+		$("#picktime").timeDropper({
+			meridians : false,
+			format : 'HH:mm',
+		});
+	</script>
+
+</body>
+</html>

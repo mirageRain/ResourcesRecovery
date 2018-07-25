@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel = "Shortcut Icon" href="/favicon.ico">
+<link rel="stylesheet" href="/static/user/css/theme.css" />
+<style>
+	.box-s img{
+	margin:-2px 5px 0 0 !important; 
+	}
+</style>
+</head>
+<body>
+	<!--header star-->
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:history.go(-1)" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">我的</div>
+		<a href="setup.html" class="fr shoucang sousuo"><i
+			class="iconfont icon-shezhi"></i></a>
+	</header>
+	<!--header end-->
+	
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left:20px;"></div>
+					<div class="object" id="object_three" style="left:40px;"></div>
+					<div class="object" id="object_four" style="left:60px;"></div>
+					<div class="object" id="object_five" style="left:80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中... </p>
+			</div>
+			
+		</div> 
+	</div>
+	<div id="container">
+		<div id="main">
+			<div class="warp clearfloat">
+				<div class="h-top clearfloat box-s">
+					<div class="tu clearfloat fl head-img">
+						<img id="user-img" src="/static/user/img/touxiang.png" />
+					</div>
+					<div class="content clearfloat fl">
+						<p class="hname" id="uid"></p>
+						<p class="hname" id="username">昵称：</p>
+						<p class="htel" id="star">积分： &nbsp;&nbsp;&nbsp等级：LV1</p>
+					</div>
+					<div class="h-bottom clearfloat">
+						<samp></samp>
+						<ul>
+							<li><a href="/business/order">
+									<p id="wait-home">0</p> <span>待上门订单</span>
+							</a></li>
+							<li><a href="/business/order">
+									<p id="wait-taking">0</p> <span>最新订单</span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="cashlist clearfloat">
+					<ul>
+						<li class="box-s"><a href="/business/order">
+								<p class="fl">
+									<img src="/static/user/img/dingdan.png" ; width="20px">订单详情
+								</p> <i class="iconfont icon-jiantou1 fr"></i>
+						</a></li>
+						<li class="box-s"><a href="/business/huifu">
+								<p class="fl">
+									<img src="/static/user/img/kefu.png" ; width="20px">我的客服
+								</p> <i class="iconfont icon-jiantou1 fr"></i>
+						</a></li>
+						<li class="box-s"><a href="/business/about-us">
+								<p class="fl">
+									<img src="/static/user/img/women.png" ; width="20px">关于我们
+								</p> <i class="iconfont icon-jiantou1 fr"></i>
+						</a></li>
+						<li class="box-s"><a href="/user/index">
+								<p class="fl">
+									<img src="/static/user/img/user-ico.png" ; width="20px">用户端
+								</p> <i class="iconfont icon-jiantou1 fr"></i>
+						</a></li>
+					</ul>
+				</div>
+				<a href="/logout" class="center-btn db ra3">退出登录</a>
+			</div>
+		</div>
+	</div>
+
+	<!--footer star-->
+	<footer id="footer">
+		<div>
+			<a id="to-business-index" >
+				<div class="icon i-1 "></div>
+				<p>首页</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-price">
+				<div class="icon i-3 "></div>
+				<p>价格</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-order">
+				<div class="icon i-7"></div>
+				<p>订单</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-center">
+				<div class="icon i-4 on"></div>
+				<p>我的</p>
+			</a>
+		</div>
+	</footer>
+	<!--footer end-->
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js" ></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js" ></script>
+<script type="text/javascript">
+	$(function() {
+		var authorities;
+		$
+				.ajax({
+					"url" : "/user/info",
+					"contentType" : "application/json",
+					"type" : "get",
+					"error" : function() {
+						mui.alert( "服务器繁忙", "提示");
+					},
+					"success" : function(returnData) {
+						if (returnData.success) {
+							
+							$("#uid").text(
+									"UID ：" + returnData.data.userId);
+							$("#user-img").attr("src",
+									returnData.data.userInfoEntity.imgUrl);
+							$("#username")
+									.text(
+											"昵称："
+													+ returnData.data.userInfoEntity.displayName);
+							$("#star")
+									.text(
+											"积分："
+													+ returnData.data.userInfoEntity.star
+													+ "   等级：LV"
+													+ returnData.data.userInfoEntity.star
+													/ 100);
+
+						} else {
+							mui.alert( returnData.errMsg, "提示");
+						}
+
+					}
+				});
+		$
+		.ajax({
+			"url" : "/business/orders/wait_home_order_count",
+			"contentType" : "application/json",
+			"type" : "get",
+			"error" : function() {
+				mui.alert( "服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				if (returnData.success) {
+					$("#wait-home").text(returnData.data);
+
+				} else {
+					mui.alert( returnData.errMsg, "提示");
+				}
+
+			}
+		});
+		$
+		.ajax({
+			"url" : "/business/orders/wait_taking_order_count",
+			"contentType" : "application/json",
+			"type" : "get",
+			"error" : function() {
+				mui.alert( "服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				if (returnData.success) {
+					$("#wait-taking").text(returnData.data);
+
+				} else {
+					mui.alert( returnData.errMsg, "提示");
+				}
+
+			}
+		});
+		document.getElementById("to-business-index").addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'/business/index',
+			    waiting:{
+			        autoShow:true,//自动显示等待框，默认为true
+			        title:'正在加载...'
+			      }
+			})
+		}); 
+		document.getElementById("to-business-price").addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'/business/price',
+			    waiting:{
+			        autoShow:true,//自动显示等待框，默认为true
+			        title:'正在加载...'
+			      }
+			})
+		}); 
+		document.getElementById("to-business-order").addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'/business/order',
+			    waiting:{
+			        autoShow:true,//自动显示等待框，默认为true
+			        title:'正在加载...'
+			      }
+			})
+		});
+		document.getElementById("to-business-center").addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'/business/center',
+			    waiting:{
+			        autoShow:true,//自动显示等待框，默认为true
+			        title:'正在加载...'
+			      }
+			})
+		}); 
+		$("#loading").hide();
+		
+	});
+</script>
+</html>

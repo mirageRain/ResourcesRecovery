@@ -1,0 +1,156 @@
+.tab-bar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: horizontal;
+	-webkit-flex-direction: horizontal;
+	flex-direction: horizontal;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	height: 49px;
+	padding-top: 4px;
+	color: @tabTxtColor;
+}
+.ios .tab-bar, .ios .nav-tabbar  {
+	.filterBlur;
+	background: @iosBackground;
+}
+.android .tab-bar, .android .nav-tabbar  {
+	background: @androidBackground;
+}
+.tab-bottom {
+	bottom: 0;
+}
+.tab-bottom:before {
+	.topLine(@c: rgba(177,177,177,.95),@t:-.03rem);
+}
+.tab-button {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	display: block;
+	height: 100%;
+	white-space: nowrap;
+	font-weight: 400;
+	font-size: 11px;
+	text-overflow:ellipsis;
+	text-align: center;
+	color: inherit;
+	.tab-button-icon {
+		height: 26px;
+		-webkit-background-size: 32px;
+		background-size: 32px;
+		&.icon-drive {/* 预约试驾 */
+			position: relative;
+			z-index: 1;
+			width: 46px;
+			height: 46px;
+			background-color: #fff;
+			border: solid 3px #fff;
+		}
+	}
+	.tab-button-txt {
+	}
+}
+.active.tab-button {
+	color: @tabTxtColorActive;
+}
+.tab-content {
+	padding-bottom: 49px;
+}
+.tab-content {
+	&.cached {
+		display: none;
+	}
+	&.active {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display:flex;
+	}
+}
+.nav-tab {
+	position: relative;
+	padding-top: 44px;
+}
+.nav-tab-content {
+	.active {
+		display: block;
+	}
+	.cached {
+		display: none;
+	}
+}
+.nav-tabbar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: horizontal;
+	-webkit-flex-direction: horizontal;
+	flex-direction: horizontal;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 44px;
+	z-index: 1;
+	&:before {
+		.bottomLine();
+	}
+	.tab-button {
+		position: relative;
+		display: block;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		flex: 1;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-aligin-self: center;
+		align-self: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+
+		height: 100%;
+		white-space: nowrap;
+		text-align: center;
+		line-height: 44px;
+		font-size: 13px;
+		&:before {
+			position: absolute;
+			margin-top: -7px;
+			height: 14px;
+			.rightLine(@t:50%);
+		}
+		&:last-child:before {
+			display: none;
+		}
+		.icon {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+	.active {
+		display: -webkit-flex;
+		display: flex;
+		color: #3598dc;
+	}
+}
+
+.sub-bar {
+	.tab-button {
+		color: #3598dc;
+	}
+}
+
+
+

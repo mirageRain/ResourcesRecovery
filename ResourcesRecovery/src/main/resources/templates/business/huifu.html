@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>在线客服</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.min.css"/>
+		<link rel="stylesheet" href="/static/user/css/reset.css">
+		<link rel="stylesheet" href="/static/user/css/theme.css" />
+	</head>
+	<body>
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">
+				平台客服
+			</div>		
+		</header>
+		
+		<div class="huifu clearfloat box-s" id="main">
+			<div class="list clearfloat fl">
+				<p class="time" id="firstTime">2018-04-18 17:26</p>
+				<div class="xia clearfloat">
+					<div class="xiaoxitu clearfloat fl">
+						<div class="tu clearfloat fl">
+							<span></span>
+							<img src="/static/user/img/women.png"/>
+						</div>
+					</div>
+					<i class="iconfont icon-shanchu fr"></i>
+					<div class="youctent clearfloat fr box-s">
+						<samp><img src="/static/user/img/25.png"/></samp>
+						尊敬的用户您好，很高兴为您服务，请问您在使用的过程遇到了什么问题?
+					</div>
+				</div>
+			</div>
+	
+		</div>
+		
+		<div class="hfctent clearfloat box-s" id="footer">
+			<input type="text" name="" id="textContext" value="" class="fl text">
+			<input type="button" name="" id="sub-btn" value="" class="fr btn" />
+		</div>
+	</body>
+	<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/user/js/common.js"></script>
+	<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+	<script type="text/javascript">
+	var imgUrl;
+	var str=["客服不在家哟~，请稍后再试。","客服正忙，您可以先查看帮助中的解决办法。","抱歉，目前没有客服在线，您可以在首页的帮助中寻找您问题的解决方法。","客服小冰正在休息，请您稍息后再试"];
+	function appendAi(){
+		var contentBuffer = new StringBuffer(); 
+		contentBuffer.append('<div class="list clearfloat fl"><p class="time">');
+		contentBuffer.append(getNowDate());
+		contentBuffer.append('</p><div class="xia clearfloat"><div class="xiaoxitu clearfloat fl"><div class="tu clearfloat fl"><span></span><img src="/static/user/img/women.png"/></div></div><i class="iconfont icon-shanchu fr"></i><div class="youctent clearfloat fr box-s"><samp><img src="/static/user/img/25.png"/></samp>');
+		contentBuffer.append(str[Math.floor(Math.random()*4)]);
+		contentBuffer.append('</div></div></div>');
+		$("#main").append(contentBuffer.toString());
+	}
+	$(function() {
+		$.ajax({
+			"url" : "/user/info",
+			"contentType" : "application/json",
+			"type" : "get",
+			"error" : function() {
+				mui.alert( "服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				if (returnData.success) {
+					
+					imgUrl=returnData.data.userInfoEntity.imgUrl;
+					
+
+				} else {
+					mui.alert( returnData.errMsg, "提示");
+				}
+
+			}
+		});
+		$("#firstTime").text(getNowDate());
+		$("#sub-btn").click(function(){
+			var contentBuffer = new StringBuffer(); 
+			contentBuffer.append('<div class="list listtwo clearfloat fl"><p class="time">');
+			contentBuffer.append(getNowDate());
+			contentBuffer.append('</p><div class="xia clearfloat"><i class="iconfont icon-shanchu icon-shanchuone fl"></i><div class="youctent clearfloat fl box-s"><samp><img src="/static/user/img/27.png"/></samp>');
+			//contentBuffer.append("抱歉，目前没有客服在线，您可以在首页的帮助中寻找您问题的解决方法。");
+			contentBuffer.append($("#textContext").val());
+			$("#textContext").val("");
+			contentBuffer.append('</div><div class="xiaoxitu clearfloat fr"><div class="tu clearfloat fl"><span></span><img src="');
+			contentBuffer.append(imgUrl);
+			contentBuffer.append('"/></div></div></div></div>');
+			$("#main").append(contentBuffer.toString());
+			var t=setTimeout("appendAi()",500);
+		
+		});
+	});
+	</script>
+</html>

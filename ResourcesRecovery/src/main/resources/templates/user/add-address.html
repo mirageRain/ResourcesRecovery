@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加收货地址</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/address.css">
+
+
+
+<style type="text/css">
+/*地址选择样式*/
+select {
+	font: 微软雅黑;
+	color: black;
+	font-size: 15px;
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	border: none;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+	select: :-ms-expand{ display: none;
+}
+
+.textare::-webkit-input-placeholder { /* WebKit browsers */
+	direction: rtl;
+}
+
+.textare:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	direction: rtl;
+}
+
+.textare::-moz-placeholder {
+	/* Mozilla Firefox 19+ but I'm not sure about working */
+	direction: rtl;
+}
+
+.textare:-ms-input-placeholder { /* Internet Explorer 10+ */
+	direction: rtl;
+}
+</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:window.location.href='/user/address'" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">添加地址</div>
+		<a id="save" class="fr baocun">保存</a>
+	</header>
+	<div id="container">
+		<div id="main" class="mui-clearfix add-address">
+			<div class="plist clearfloat data">
+				<ul>
+					<li class="clearfloat"><a href="#">
+							<p class="fl">姓名</p> <input type="text" class="fr shuru" name=""
+							id="applyName" value="" placeholder="请输入预约人姓名" />
+					</a></li>
+					<li class="clearfloat"><a href="#">
+							<p class="fl">联系电话</p> <input type="text" class="fr shuru"
+							name="" id="phone" value="" placeholder="请输入手机号码" />
+					</a></li>
+				</ul>
+
+				<label for="Addr" id="areaLabel" class="address"> <span
+					class="fl" style="font-size: 15px">所在地区</span> <input type="text"
+					name="Addr" id="Addr" readonly placeholder="请选择地区">
+				</label>
+				<div id="addressSelectWrapper" style="z-index: 999">
+					<div id="addressSelect">
+						<div class="tip">
+							<h3>所在地区</h3>
+							<button type="button" id="cancel"></button>
+						</div>
+						<div id="address">
+							<ul class="selected-address">
+								<li class="lastarea" id="lastprovince">请选择</li>
+								<li class="lastarea" id="lastcity">请选择</li>
+								<li class="lastarea" id="lastarea">请选择</li>
+								<li class="lastarea" id="lasttown">请选择</li>
+							</ul>
+							<div class="address-content">
+								<ul id="province"></ul>
+								<ul id="city"></ul>
+								<ul id="area"></ul>
+								<ul id="town"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div>
+						<textarea name="" rows="4" cols="" placeholder="请填写详细地址，不少于5个字"
+							class="textare box-s" id="addressText"></textarea>
+						<div class="address-btn clearfloat">
+							<span class="szwmr fl">设为默认</span>
+							 	<div class="mui-switch fr" >
+							  		<div class="mui-switch-handle"></div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script src="/static/user/js/city.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 地址选择器遮罩层打开与关闭
+		$("#areaLabel").click(function(e) {
+			$("#addressSelectWrapper").show();
+			e.stopPropagation();
+		});
+		$(document).click(function() {
+			$("#addressSelectWrapper").hide();
+		});
+		$("#cancel").click(function() {
+			$("#addressSelectWrapper").hide();
+		});
+		$("#addressSelect").click(function(e) {
+			e.stopPropagation();
+		});
+		$("#save").click(				
+				function() {
+					$("#loading").find(".wait-i1").text("保存中,请稍等...");
+					$("#loading").show();
+					var addressData = {};
+					addressData.applyName = $("#applyName").val();
+					addressData.phone = $("#phone").val();
+					addressData.townCode = $("#Addr").data("code");
+					addressData.address = $("#addressText").val();
+					addressData.isDefault = $(".mui-switch").hasClass(
+							"mui-active") ? 1 : 0;
+					$.ajax({
+						"url" : "/user/collect_address",
+						"data" : JSON.stringify(addressData),
+						"contentType" : "application/json",
+						"type" : "post",
+						"error" : function() {
+							$("#loading").hide();
+							mui.alert("服务器繁忙", "提示");
+						},
+						"success" : function(data1) {
+							if (data1.success) {
+
+								window.location.href = document.referrer;
+							} else {
+								$("#loading").hide();
+								mui.alert( data1.errMsg, "提示");
+							}
+
+						}
+					});
+				});
+		initAddress();
+		$("#loading").hide();
+	});
+
+	//初始化地址选择
+	function initAddress() {
+		$("#Addr").cityLinkage({
+			containerId : 'addressSelectWrapper',
+			getSelectedCode : function() {
+				return $("#Addr").data("code");
+			},
+			callback : function(data) {
+				$("#Addr").val(data.addr).data("code", data.town.code);
+			}
+		});
+	}
+</script>
+
+
+
+<!--默认按钮-->
+<script type="text/javascript">
+	$('.toggle').click(
+			function(e) {
+
+				var toggle = this;
+
+				e.preventDefault();
+
+				$(toggle).toggleClass('toggle--on').toggleClass('toggle--off')
+						.addClass('toggle--moving');
+
+				setTimeout(function() {
+					$(toggle).removeClass('toggle--moving');
+				}, 200)
+
+			});
+</script>
+</html>

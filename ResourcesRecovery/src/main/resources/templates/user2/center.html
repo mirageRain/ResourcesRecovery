@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>我的</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/common.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/index.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/mui.min.css}"/>
+		<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+		<script th:src="@{/static/user/js/hmt.js}" type="text/javascript"></script>
+		<style>
+		.head-img{
+		border: solid 2px #eeeeee;
+		    border-radius: 50%;
+		    overflow: hidden;
+		    margin-top: 10px;
+		}
+			
+		</style>
+	</head>
+	<body>
+		<!--header star-->
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">我的</div>
+			<a href="setup.html" class="fr shoucang sousuo"><i class="iconfont icon-shezhi"></i></a>		
+		</header>
+	    <!--header end-->
+	    <div id="container">		
+			<div id="main">
+			    <div class="warp clearfloat">
+			    	<div class="h-top clearfloat box-s">
+			    		<div class="tu clearfloat fl head-img" >
+			    			<img id="user-img" src="/static/user/img/touxiang.png" />
+			    		</div>
+			    		<div class="content clearfloat fl">
+			    			<p class="hname" id="uid" ></p>
+			    			<p class="hname" id="username" >昵称：小可爱</p>
+			    			<p class="htel" id="star">积分：89 &nbsp;&nbsp;&nbsp等级：LV1</p>
+			    		</div>
+			    		<div class="h-bottom clearfloat">
+			    			<samp></samp>
+			    			<ul>
+			    				<li>
+			    					<a href="recharge.html">
+				    					<p id="money">23.3</p>
+				    					<span>余额</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="txguanli.html">
+				    					<p id="oldMoney">66.69</p>
+				    					<span>累计收益</span>
+			    					</a>
+			    				</li>
+			    			</ul>
+			    		</div>
+			    	</div>
+			    	<!--<div class="cash clearfloat">
+			    		<div class="cash-tit clearfloat box-s">
+			    			我的订单
+			    		</div>
+			    		<div class="shang clearfloat">
+			    			<ul>
+			    				<li>
+			    					<a href="order.html">
+			    						<img th:src="@{/static/user/img/group1.png}"/>
+			    						<span>团购订单</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="wmai-order.html">
+			    						<img th:src="@{/static/user/img/group2.png}"/>
+			    						<span>外卖订单</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="sc-order.html">
+			    						<img th:src="@{/static/user/img/group3.png}"/>
+			    						<span>商城订单</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="hotel-order.html">
+			    						<img th:src="@{/static/user/img/group4.png}"/>
+			    						<span>酒店预约</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="jifen-order.html">
+			    						<img th:src="@{/static/user/img/group5.png}"/>
+			    						<span>积分兑换订单</span>
+			    					</a>
+			    				</li>
+			    			</ul>
+			    		</div>
+			    	</div>
+			    	
+			    	<div class="cash clearfloat">
+			    		<div class="cash-tit clearfloat box-s">
+			    			收藏关注
+			    		</div>
+			    		<div class="shang xia clearfloat">
+			    			<ul>
+			    				<li>
+			    					<a href="tuan.html">
+			    						<p><i class="iconfont icon-tuangou"></i></p>
+			    						<span>团购收藏</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="mall.html">
+			    						<p><i class="iconfont icon-baihuo"></i></p>
+			    						<span>百货收藏</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="remen.html">
+			    						<p><i class="iconfont icon-shangjia"></i></p>
+			    						<span>关注商家</span>
+			    					</a>
+			    				</li>
+			    			</ul>
+			    		</div>
+			    	</div>
+			    	
+			    	<div class="cash clearfloat">
+			    		<div class="cash-tit clearfloat box-s">
+			    			我的优惠券
+			    		</div>
+			    		<div class="shang clearfloat">
+			    			<ul>
+			    				<li>
+			    					<a href="coupon.html">
+			    						<img th:src="@{/static/user/img/sale1.png}"/>
+			    						<span>商家优惠券</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="coupon.html">
+			    						<img th:src="@{/static/user/img/sale2.png}"/>
+			    						<span>平台优惠券</span>
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="member.html">
+			    						<img th:src="@{/static/user/img/sale3.png}"/>
+			    						<span>我的会员</span>
+			    					</a>
+			    				</li>
+			    			</ul>
+			    		</div>
+			    	</div>
+			    	
+			    	-->
+			    	<div class="cashlist clearfloat">
+			    		<ul>
+			    			<li class="box-s">
+			    				<a href="recharge.html">
+			    					<p class="fl">
+			    					<img th:src="@{/static/user/img/提现.png}"  width="20px">&nbsp;&nbsp;提现</p>
+			    					<i class="iconfont icon-jiantou1 fr"></i>
+			    				</a>
+			    			</li>
+			    			<li class="box-s">
+			    				<a href="address.html">
+			    					<p class="fl">
+			    					<img th:src="@{/static/user/img/地址.png}"  width="20px">&nbsp;&nbsp;地址管理</p>
+			    					<i class="iconfont icon-jiantou1 fr"></i>
+			    				</a>
+			    			</li>
+			    			<li class="box-s">
+			    				<a href="order.html">
+			    					<p class="fl">
+			    					<img th:src="@{/static/user/img/订单.png}"; width="20px">&nbsp;&nbsp;订单详情</p>
+			    					<i class="iconfont icon-jiantou1 fr"></i>
+			    				</a>
+			    			</li>
+			    			<li class="box-s">
+			    				<a href="huifu.html">
+			    					<p class="fl">
+			    					<img th:src="@{/static/user/img/客服.png}"; width="20px">&nbsp;&nbsp;我的客服</p>
+			    					<i class="iconfont icon-jiantou1 fr"></i>
+			    				</a>
+			    			</li>
+			    			<li class="box-s">
+			    				<a href="huifu.html">
+			    					<p class="fl">
+			    					<img th:src="@{/static/user/img/关于我们.png}"; width="20px">&nbsp;&nbsp;关于我们</p>
+			    					<i class="iconfont icon-jiantou1 fr"></i>
+			    				</a>
+			    			</li>
+			    		</ul>
+			    	</div>			    	
+			    	<a href="/logout" class="center-btn db ra3">退出登录</a>
+			    </div>
+			</div>
+		</div>
+	    
+		<!--footer star-->
+	    <footer id="footer">
+			<div>
+				<a href="index.html">
+					<div class="icon i-1"></div>
+					<p>首页</p>
+				</a>
+			</div>
+			<div>
+				<a href="price.html">
+					<div class="icon i-3"></div>
+					<p>价格</p>
+				</a>
+			</div>
+			<div>
+				<a href="order.html">
+					<div class="icon i-7"></div>
+					<p>订单</p>
+				</a>
+			</div>
+			<div>
+				<a href="center.html">
+					<div class="icon i-4 on"></div>
+					<p>我的</p>
+				</a>
+			</div>			
+		</footer>		
+		<!--footer end-->
+	</body>	
+	<script>
+	$(function(){
+		
+		
+		  //补0
+		   function getzf(num){  
+			  var temp=(num+"").length;
+			  for(var i=0;i<5-temp;i++){
+				  num = '0'+num; 
+			  }
+		       return num;  
+		   }
+		  
+		$.ajax({
+			"url" : "/user/info",								
+			"contentType": "application/json",
+			"type" : "get",
+			"error" : function() {
+				alert("服务器繁忙");
+			},
+			"success" : function(returnData) {
+				if (returnData.success) {	
+					$("#uid").text("UID ："+getzf(returnData.data.userId));
+					$("#user-img").attr("src",returnData.data.userInfoEntity.imgUrl);
+					$("#username").text("昵称："+returnData.data.userInfoEntity.displayName);
+					$("#star").text("积分："+returnData.data.userInfoEntity.star+"   等级：LV"+returnData.data.userInfoEntity.star/100);
+					$("#money").text(returnData.data.userInfoEntity.money);
+					$("#old-money").text(0);
+					
+				} else {
+					alert("服务器繁忙");
+				}
+
+			}
+		});
+		
+		
+	});
+	</script>
+</html>

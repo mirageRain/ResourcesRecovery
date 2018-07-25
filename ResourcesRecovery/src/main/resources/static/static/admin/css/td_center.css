@@ -1,0 +1,12 @@
+td {
+	text-align: center;
+}
+a {
+	color: #01AAED;
+}
+a:visited {
+	color: #FF5722;
+}
+a:hover {
+	color: #5FB878;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/newLayui.css}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+	.site-demo-upload,
+.site-demo-upload img{width: 120px; height: 120px; border-radius: 100%;}
+.site-demo-upload{position: relative; background: #e2e2e2;margin-left:100px;}
+.site-demo-upbar{position: absolute; top: 50%; left: 50%; margin: -18px 0 0 -56px;}
+.site-demo-upload .layui-upload-button{background-color: rgba(0,0,0,.2); color: rgba(255,255,255,1);}
+
+</style>
+<style>
+		.canvas-box{ width: 300px; height: 200px;margin-left:70px; position: relative;-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none }
+		.canvas-box .overlay{ position: absolute; left: 0; top: 0; cursor: move;border:1px solid #69f;}
+		.canvas-box div,.canvas-box canvas{-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;user-select:none}
+	</style>
+<title></title>
+</head>
+<body>
+	<div
+		style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">分类</label>
+				<div class="layui-input-block">
+					<select id="goods-type" name="goods-type" lay-verify="required">
+
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">规格</label>
+				<div class="layui-input-block">
+					<select id="goods-unit" name="goods-unit" lay-verify="required">
+
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">名称</label>
+				<div class="layui-input-block">
+					<input id="goods-name" type="text" name="goods-name" value=""
+						placeholder="请设置名称" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">价格</label>
+				<div class="layui-input-block">
+					<input id="price" type="text" name="price" value=""
+						placeholder="请设置价格" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label" style="margin:40px 0 0 0">图片</label>
+				<div class="site-demo-upload" style="margin:15px 0 0 115px">
+					<img id="LAY_demo_upload" src="/static/upload/img/goods/default.jpg">
+					<div class="site-demo-upbar">
+						<div class="layui-box layui-upload-button">
+							<form target="layui-upload-iframe" method="get" key="set-mine"
+								enctype="multipart/form-data" action="/test/upload.json">
+								<input type="file" name="file" class="layui-upload-file"
+									id="ipt">
+							</form>
+							<span class="layui-upload-icon"><i class="layui-icon"></i>上传图片</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="canvas-box">
+
+	</div>
+
+	<input type="button" id="save" value="保存" style="display:none">
+
+	<div id="base64" style="display:none"></div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript"
+	th:src="@{/static/admin/plugins/layuiNew/layui.js}"></script>
+	<script type="text/javascript"
+	th:src="@{/static/admin/js/jquery.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/admin/js/zm-canvas-crop.js}"></script>
+<script type="text/javascript">
+function saveCallBack(base64) {
+	$('#base64').html(base64);  
+}
+
+var c = new ZmCanvasCrop({
+				fileInput: $('#ipt')[0],  
+				saveBtn: $('#save')[0],
+				box_width: 300,  //剪裁容器的最大宽度
+				box_height: 200, //剪裁容器的最大高度
+				min_width: 100,  //要剪裁图片的最小宽度
+				min_height: 100  //要剪裁图片的最小高度
+			}, saveCallBack);
+	function StringBuffer() {
+		this.__strings__ = new Array;
+	}
+
+	StringBuffer.prototype.append = function(str) {
+		this.__strings__.push(str);
+	};
+
+	StringBuffer.prototype.toString = function() {
+		return this.__strings__.join("");
+	};
+
+	layui.use('jquery', function() {
+		var $ = layui.jquery;
+		
+		var rowDate = window.parent.tempRowData;
+
+		$("#goods-name").val(rowDate.name);
+		
+		$("#price").val(rowDate.price);
+		$("#LAY_demo_upload").attr("src", "/static/upload/img/goods/"+rowDate.imageUrl);
+
+		var goodsTypeJson = window.parent.goodsTypeJson;
+		var goodsUnitJson = window.parent.goodsUnitJson;
+
+		var contentBuffer = new StringBuffer();
+		var unitBuffer = new StringBuffer();
+
+		
+		for (var i = 1; i <= goodsTypeJson.length; i++) {
+			if (goodsTypeJson[i] != null) {
+				contentBuffer.append('<option value="');
+				contentBuffer.append(i);
+				if(i==window.parent.tempRowData.childTypeId)
+					contentBuffer.append('"  selected>');
+				else 
+					contentBuffer.append('" >');
+				
+				contentBuffer.append(goodsTypeJson[i]);
+				contentBuffer.append('</option>');
+			}
+		}
+		$("#goods-type").append(contentBuffer.toString());
+
+		for (var i = 1; i <= goodsUnitJson.length; i++) {
+			
+			if (goodsUnitJson[i] != null) {
+				unitBuffer.append('<option value="');
+				unitBuffer.append(i);
+				
+				if(i==window.parent.tempRowData.unitId)
+					unitBuffer.append('"  selected>');
+				else 
+					unitBuffer.append('" >');
+				unitBuffer.append(goodsUnitJson[i]);
+				unitBuffer.append('</option>');
+			}
+		}
+		$("#goods-unit").append(unitBuffer.toString());
+
+	});
+
+	layui.use('form', function() {
+		var form = layui.form;
+		var $ = layui.jquery;
+		$(".layui-anim-upbit").css("color", "#000");
+	});
+	
+</script>
+<script src="zm-canvas-crop.js"></script>
+</html>
+
+

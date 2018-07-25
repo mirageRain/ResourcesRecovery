@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>郸锋</title>
+    <link rel="stylesheet" th:href="@{/css/ui.css}"></link>
+</head>
+<body class="android">
+<div class="scroll-content" >
+    <div class="scroll">
+        <div class="header home-header">
+            <div class="toolbar statusbar-padding active">
+                <button class="bar-button current-city"><i class="icon icon-set"></i></button>
+                <button class="bar-button icon-button"><i class="icon icon-msg"></i></button>
+            </div>
+        </div>
+        <div class="my-info">
+            <div class="my-info-background" style="background-color:#fa4949; -webkit-filter:blur(0px)"></div>
+            <img class="my-avatar" src="img/my-photo1.jpg" th:src="${imgUrl}">
+            <span class="name"  th:text="${name}"></span>
+            <span class="my-vip" style="background:none">普通会员&nbsp;|&nbsp;积分:590&nbsp;|&nbsp;级别:初级</span>
+        </div>
+        <div class="my-car-shortcut">
+            <div class="layout-column">
+                <a class="col"  rel="test" href="#">
+							<span class="img-icon ">
+								<img class="img-icon-home" src="images/icon-png/icon-ax-6.png" />
+							</span>
+                    <span class="img-icon-name">我的收藏</span>
+                </a>
+                <a class="col"  rel="test" href="#">
+							<span class="img-icon ">
+								<img class="img-icon-home" src="images/icon-png/icon-ax-7.png" />
+							</span>
+                    <span class="img-icon-name">我的卡券</span>
+                </a>
+                <a class="col" href="my_order.html" rel="test">
+							<span class="img-icon ">
+								<img class="img-icon-home" src="images/icon-png/icon-ax-8.png" />
+							</span>
+                    <span class="img-icon-name">我的消息</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="devider b-line"></div>
+        <!-- 个人中心 begin-->
+        <div>
+            <div class="aui-list-cells">
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-1.png"></div>
+                    <div class="aui-list-cell-cn">我的钱包</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-2.png"></div>
+                    <div class="aui-list-cell-cn">申请认证</div>
+                    <div class="aui-list-cell-fr">未认证</div>
+                </a>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-3.png"></div>
+                    <div class="aui-list-cell-cn">我的订单</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-4.png"></div>
+                    <div class="aui-list-cell-cn">每日任务</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <div class="devider b-line"></div>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-5.png"></div>
+                    <div class="aui-list-cell-cn">意见反馈</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-6.png"></div>
+                    <div class="aui-list-cell-cn">点击好评</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <div class="devider b-line"></div>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-7.png"></div>
+                    <div class="aui-list-cell-cn">我的收藏</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <a href="javascript:;" class="aui-list-cell">
+                    <div class="aui-list-cell-fl"><img src="images/icon-png/icon-n-8.png"></div>
+                    <div class="aui-list-cell-cn">浏览历史</div>
+                    <div class="aui-list-cell-fr"></div>
+                </a>
+                <div class="devider b-line"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="tab-bar tab-bottom" style="position:fixed; bottom:0; left:0;">
+    <a class="tab-button " href="#"><i class="tab-button-icon icon icon-home"></i><span class="tab-button-txt">首页</span></a>
+    <a class="tab-button " href="#"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span class="tab-button-txt">论坛</span></a>
+    <a class="tab-button " href="/collect_address/me"><i class="tab-button-icon icon icon-service"></i><span class="tab-button-txt">服务</span></a>
+    <a class="tab-button active" href="/me"><i class="tab-button-icon icon icon-my"></i><span class="tab-button-txt">我的</span></a>
+</div>
+</body>
+</html>

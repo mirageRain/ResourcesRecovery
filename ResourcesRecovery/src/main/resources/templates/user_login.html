@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>郸锋</title>
+<meta name="Keywords" content="wx.mabotao.com">
+<meta name="Description" content="wx.mabotao.com">
+
+<!-- Bootstrap -->
+<link th:href="@{/static/user2/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/static/user2/css/enter.css}" rel="stylesheet">
+<script th:src="@{/static/user2/js/jquery.min.js}"></script>
+<script th:src="@{/static/user2/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/user2/js/jquery.particleground.min.js}"></script>
+<link rel = "Shortcut Icon" href="/favicon.ico">
+</head>
+<body style="background-color:#16a085">
+	<div id="particles">
+		<canvas class="pg-canvas" width="1920" height="911"
+			style="display: block;"></canvas>
+		<div class="intro" style="margin-top: -256.5px;background-color:rgba(255,255,255,0.3)">
+			<div class="container">
+				<div class="row" style="padding: 30px 0;">
+					<div class="col-md-3 col-centered tac">
+						<img th:src="@{/static/user2/img/logo.png}" alt="logo">
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-8 col-centered">
+						<form method="post" action="/login/from" id="register-form"
+							autocomplete="class=" nice-validator n-default" novalidate>
+							<div class="form-group">
+								<input type="text" class="form-control" id="account"
+									name="username" placeholder="手机号/用户名" autocomplete="off"
+									aria-required="true" data-tip="英文字母数字或下划线">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="password"
+									name="password" placeholder="密码" aria-required="true"
+									data-tip="请设置您的密码（6-16个字符）">
+							</div>
+							<div id="validator-tips" class="validator-tips"></div>
+							<div class="checkbox">
+								<div class="form-center-button">
+									<button type="submit" id="submit_button"
+										class="btn btn-primary btn-current">登录</button>
+									<a href="#" class="btn btn-default">注册</a>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row" style="padding: 30px 0;">
+					<div class="col-md-3 col-centered tac">
+						<div class="row login-others">
+							<a id="statis-qq" class="col-md-12 col-sm-12" style="cursor:pointer"><i></i>&nbsp;<span>微信登录</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="myModal" tabindex="-1"
+				style="text-align: left" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body" id="agreementContent"></div>
+					</div>
+				</div>
+			</div>
+			<script th:src="@{/static/user2/js/jquery.validator.min.js}"></script>
+			<link rel="stylesheet" th:href="@{/static/user2/css/jquery.validator.css}">
+
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			var intro = $('.intro');
+			$('#particles').particleground({
+				 dotColor: '#5cbdaa',
+				    lineColor: '#5cbdaa'
+			});
+			intro.css({
+				'margin-top' : -(intro.height() / 2)
+			});
+			$("#statis-qq").click(function(){
+				window.location.href="/auth/weixin";
+			});
+		});
+	</script>
+</body>
+</html>

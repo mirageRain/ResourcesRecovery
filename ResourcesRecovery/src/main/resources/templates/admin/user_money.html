@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>用户信息</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/layui.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/query.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/jquery.edittable.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/main.css}">
+</head>
+<body>
+	<div style="margin: 15px ;overflow-x:hidden;overflow-y:auto;">
+		<blockquote class="layui-elem-quote">
+			<h2 style="font-size: 20px" class="layui-inline">
+				<i class="layui-icon" style="font-size: 30px">&#xe629;</i> 用户资金
+			</h2>
+		</blockquote>
+		<button id="addRow" class="layui-btn">添加用户</button>
+		<fieldset class="layui-elem-field">
+			<legend>数据列表</legend>
+			<div class="layui-field-box">
+				<table class="layui-table" id="layui-table">
+				</table>
+			</div>
+		</fieldset>
+	</div>
+	<link rel="stylesheet" type="text/css"
+		href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+	<!-- jQuery -->
+	<script type="text/javascript" charset="utf8"
+		src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<!-- DataTables -->
+
+	<script type="text/javascript" charset="utf8"
+		th:src="@{/static/admin/js/dataTables.js}"></script>
+	<link type="text/css" rel="stylesheet"
+		th:href="@{/static/admin/css/bootstrap.min.css}">
+	<script type="text/javascript" charset="utf8"
+		th:src="@{/static/admin/js/bootstrap.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/static/admin/plugins/layui/layui.js}"></script>
+
+	<script type="text/javascript">
+		layui.use([ 'laydate', 'jquery', 'form' ], function() {
+			var form = layui.form();
+			var $ = layui.jquery;
+			$("#date").click(function() {
+				layui.laydate({
+					elem : this
+				});
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+	
+	 function getMyDate(str){  
+         var oDate = new Date(str),  
+         oYear = oDate.getFullYear(),  
+         oMonth = oDate.getMonth()+1,  
+         oDay = oDate.getDate(),  
+         oHour = oDate.getHours(),  
+         oMin = oDate.getMinutes(),  
+         oSen = oDate.getSeconds(),  
+         oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+getzf(oSen);//最后拼接时间  
+         return oTime;  
+     }; 
+     //补0
+   function getzf(num){  
+       if(parseInt(num) < 10){  
+           num = '0'+num;  
+       }  
+       return num;  
+   }
+     
+		var table = $('#layui-table')
+				.DataTable(
+						{
+							"ajax" : {
+								"url" : "/admin/query_all_user",
+								"dataSrc" : "data",
+								"type" : "GET",
+								"error" : function() {
+									layer.msg("服务器繁忙，请稍后再试", {
+										icon : 5,
+										anim : 0
+									});
+								}
+							},
+							"columns" : [
+									{
+										"data" : "userId",
+										"title" : "用户ID",
+										"defaultContent" : ""
+									},
+									{
+										"data" : "username",
+										"title" : "用户名",
+										"defaultContent" : ""
+									},
+									{
+										"data" : "userInfoEntity.displayName",
+										"title" : "昵称",
+										"defaultContent" : ""
+									},
+									{
+										"data" : "userInfoEntity.money",
+										"title" : "用户资金",
+										"defaultContent" : ""
+									},
+									{
+										"data" : "registerTime",
+										"title" : "注册时间",
+										"defaultContent" : ""
+									},
+									{
+										"data" : "registerIp",
+										"title" : "注册IP",
+										"defaultContent" : ""
+									},
+									{
+										"data" : null,
+										"title" : "操作",
+										"defaultContent" : "<button class='resave-btn layui-btn layui-btn-normal' type='button'>变动资金</button>  <button class='layui-btn layui-btn-warm' type='button'>删除用户</button>"
+									} ],
+									"columnDefs": [ {
+									    "targets": 4,
+									    "data": "registerTime",
+									    "render": function ( data, type, full, meta ) {
+									      return getMyDate(data);
+									    }
+									  } ],
+							"language" : {
+								"sProcessing" : "处理中...",
+								"sLengthMenu" : "显示 _MENU_ 项结果",
+								"sZeroRecords" : "没有匹配结果",
+								"sInfo" : "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+								"sInfoEmpty" : "显示第 0 至 0 项结果，共 0 项",
+								"sInfoFiltered" : "(由 _MAX_ 项结果过滤)",
+								"sInfoPostFix" : "",
+								"sSearch" : "搜索:",
+								"sUrl" : "",
+								"sEmptyTable" : "表中数据为空",
+								"sLoadingRecords" : "载入中...",
+								"sInfoThousands" : ",",
+								"oPaginate" : {
+									"sFirst" : "首页",
+									"sPrevious" : "上页",
+									"sNext" : "下页",
+									"sLast" : "末页"
+								},
+								"oAria" : {
+									"sSortAscending" : ": 以升序排列此列",
+									"sSortDescending" : ": 以降序排列此列"
+								}
+							}
+
+						});
+
+		//删除单行
+		$("#layui-table tbody").on("click", ".layui-btn-warm", function() {
+			var nRow = $(this).parents('tr')[0];
+			var rowData = table.row(nRow).data();
+			var itemName = rowData.username;
+			layer.confirm("确定删除用户   " + itemName + "   吗?", {
+				icon : 3,
+				title : '确认删除操作',
+				anim : 6
+			}, function(index) {
+				layer.close(index);
+				
+				$.ajax({
+					"url" : "/users/"+rowData.userId,							
+					"contentType": "application/json",
+					"type" : "delete",
+					"error" : function() {
+						layer.msg("服务器繁忙，请稍后再试", {
+							icon : 5,
+							anim : 0
+						});
+					},
+					"success" : function(data1) {
+						if (data1.success) {
+							layer.close(index);
+							table.ajax.reload();
+							layer.msg('删除成功', {
+								icon : 6,
+								time : 700
+							});
+						} else {
+							layer.msg(data1.errMsg, {
+								icon : 5, 
+								anim : 0
+							});
+						}
+
+					}
+				});
+				
+			})
+		});
+		var tempRowData;
+		
+		//修改信息
+		$("#layui-table tbody").on(
+				"click",
+				".resave-btn",
+				function() {
+					var nRow = $(this).parents('tr')[0];
+					var rowData = table.row(nRow).data();
+					var itemName = rowData.username;
+					tempRowData = rowData;
+					layer
+					layer.open({
+						type : 2,
+						title : [ '详细信息',
+								'padding:0  ;text-align:center' ] 
+						,
+						closeBtn : false,
+						area : [ '500px', '400px' ],
+						shade : 0.8,
+						id : 'LAY_layuipro' //设定一个id，防止重复弹出
+						,
+						btn : [ '确定', '取消' ],
+						moveType : 1 //拖拽模式，0或者1
+						,
+						content : 'update_user_money'
+						//,content:'<div  style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><form class="layui-form" action=""><select name="modules" lay-verify="required" lay-search=""><option value="">直接选择或搜索选择</option><option value="1">layer</option><option value="2">form</option><option value="3">layim</option><option value="4">element</option><option value="5">laytpl</option><option value="6">upload</option><option value="7">laydate</option><option value="8">laypage</option><option value="9">flow</option><option value="10">util</option><option value="11">code</option><option value="12">tree</option><option value="13">layedit</option><option value="14">nav</option><option value="15">tab</option><option value="16">table</option><option value="17">select</option><option value="18">checkbox</option><option value="19">switch</option><option value="20">radio</option></select></form></div>'
+						,
+						success : function(layero) {
+							var btn = layero.find('.layui-layer-btn');
+							btn.css('text-align', 'center');
+						},
+						yes : function(index, layero) {
+							var userData = {};
+							
+							userData.changeType = layer.getChildFrame("#change-type").find("option:selected").val();
+							userData.changeMoney = layer.getChildFrame("#change-money")
+							.val();	
+							$.ajax({
+								"url" : "/users/money/"+rowData.userId,
+								"data": JSON.stringify(userData),								
+								"contentType": "application/json",
+								"type" : "put",
+								"error" : function() {
+									layer.msg("服务器繁忙，请稍后再试", {
+										icon : 5,
+										anim : 0
+									});
+								},
+								"success" : function(data1) {
+									if (data1.success) {
+										layer.close(index);
+										table.ajax.reload();
+										layer.msg('修改成功', {
+											icon : 6,
+											time : 700
+										});
+									} else {
+										layer.msg(data1.errMsg, {
+											icon : 5, 
+											anim : 0
+										});
+									}
+
+								}
+							});
+
+						},
+						btn2 : function(index, layero) {
+						}
+					});
+				});
+
+		//添加用户
+		$('#addRow').on(
+				'click',
+				function() {
+
+					layer.open({
+						type : 2,
+						title : [ '添加用户',
+								'padding:0 ;text-align:center' ] //不显示标题栏
+						,
+						closeBtn : false,
+						area : [ '500px', '600px' ],
+						shade : 0.8,
+						id : 'LAY_layuipro' //设定一个id，防止重复弹出
+						,
+						btn : [ '确定', '取消' ],
+						moveType : 1 //拖拽模式，0或者1
+						,
+						content : 'add_user_model'
+						//,content:'<div  style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><form class="layui-form" action=""><select name="modules" lay-verify="required" lay-search=""><option value="">直接选择或搜索选择</option><option value="1">layer</option><option value="2">form</option><option value="3">layim</option><option value="4">element</option><option value="5">laytpl</option><option value="6">upload</option><option value="7">laydate</option><option value="8">laypage</option><option value="9">flow</option><option value="10">util</option><option value="11">code</option><option value="12">tree</option><option value="13">layedit</option><option value="14">nav</option><option value="15">tab</option><option value="16">table</option><option value="17">select</option><option value="18">checkbox</option><option value="19">switch</option><option value="20">radio</option></select></form></div>'
+						,
+						success : function(layero) {
+							var btn = layero.find('.layui-layer-btn');
+							btn.css('text-align', 'center');
+						},
+						yes : function(index, layero) {
+							var userData = {};
+							userData.username = layer.getChildFrame("#username")
+							.val();
+							userData.type = layer.getChildFrame("input[name='type']:checked")
+							.val();
+							userData.state = layer.getChildFrame("#state").parent().children(".layui-unselect").hasClass("layui-form-onswitch")?1:0;
+							userData.displayName = layer.getChildFrame("#displayName")
+							.val();
+							userData.phone = layer.getChildFrame("#phone")
+							.val();
+							userData.email = layer.getChildFrame("#email")
+							.val();
+							userData.idCard = layer.getChildFrame("#idCard")
+							.val();
+							userData.authorities=layer.getChildFrame("#authorities").find("option:selected").text();
+							var password=layer.getChildFrame("#password")
+							.val();
+							if(password!=null&&$.trim(password)!="")
+								userData.password = $.trim(password);	
+							
+							$.ajax({
+								"url" : "/users",
+								"data": JSON.stringify(userData),								
+								"contentType": "application/json",
+								"type" : "post",
+								"error" : function() {
+									layer.msg("服务器繁忙，请稍后再试", {
+										icon : 5,
+										anim : 0
+									});
+								},
+								"success" : function(data1) {
+									if (data1.success) {
+										layer.close(index);
+										table.ajax.reload();
+										layer.msg('添加成功', {
+											icon : 6,
+											time : 700
+										});
+									} else {
+										layer.msg(data1.errMsg, {
+											icon : 5, 
+											anim : 0
+										});
+									}
+
+								}
+							});
+
+						},
+						btn2 : function(index, layero) {
+						}
+					});
+				});
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/newLayui.css}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+</head>
+<body>
+	<div
+		style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">权限</label>
+				<div class="layui-input-block">
+					<select id="authorities" name="authorities" lay-verify="required">
+						<option value="0" selected>ROLE_ADMIN</option>
+						<option value="1">ROLE_USER</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户名</label>
+				<div class="layui-input-block">
+					<input id="username" type="text" name="username" value=""
+						placeholder="请设置用户名" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">状态</label>
+				<div class="layui-input-block">
+
+					<input id="state" type="checkbox" name="state" lay-skin="switch" 
+						lay-text="启用|冻结" checked>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户类型</label>
+				<div class="layui-input-block" id="type">
+					<input type="radio" name="type" value="1" title="PC注册" checked>
+					<input type="radio" name="type" value="2" title="微信注册"> <input
+						type="radio" name="type" value="3" title="手机注册">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">昵称</label>
+				<div class="layui-input-block">
+					<input id="displayName" type="text" name="displayName" value=""
+						placeholder="请设置昵称" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">手机</label>
+				<div class="layui-input-block">
+					<input id="phone" type="text" name="phone" value=""
+						placeholder="请设置手机号" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">邮箱</label>
+				<div class="layui-input-block">
+					<input id="email" type="text" name="email" value=""
+						placeholder="请设置邮箱" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">身份证号</label>
+				<div class="layui-input-block">
+					<input id="idCard" type="text" name="idCard" value=""
+						placeholder="请设置身份证号" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-block">
+					<input id="password" type="password" name="password" value=""
+						placeholder="请设置密码" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">重复密码</label>
+				<div class="layui-input-block">
+					<input id="newPassword" type="password" name="newPassword" value=""
+						placeholder="请再次输入密码" class="layui-input">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript"
+	th:src="@{/static/admin/plugins/layuiNew/layui.js}"></script>
+
+<script type="text/javascript">
+
+	layui.use('form', function() {
+		var form = layui.form;
+		var $ = layui.jquery;
+		$(".layui-anim-upbit").css("color","#000");
+	});
+</script>
+</html>
+
+

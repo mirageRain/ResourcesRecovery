@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>地址管理</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel="stylesheet" href="/static/user/css/theme.css" />
+<link rel="Shortcut Icon" href="/favicon.ico">
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:window.location.href='/business/center'" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">地址管理</div>
+	</header>
+	<div id="load"></div>
+	<div id="container">
+		<div id="main" class="mui-clearfix contaniner">
+		</div>
+		<a href="/business/add-address" class="address-add fl"> 添加新地址 </a>
+	</div>
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script type="text/javascript">
+
+	
+
+$(function(){			
+	$.ajax({
+		"url" : "/user/collect_address",								
+		"contentType": "application/json",
+		"type" : "get",
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			if (returnData.success) {	
+				$.each( returnData.data, function(index, content){
+					var contentBuffer = new StringBuffer(); 
+
+					contentBuffer.append('<div class="addlist clearfloat" address-id="');
+					contentBuffer.append(content.collectAddressId);
+					contentBuffer.append('"><div class="top clearfloat box-s"><ul><li><span class="fl">');
+					contentBuffer.append('姓名：<span class="addr-i">'+content.applyName+'</span>');
+					contentBuffer.append('</span><span class="fr">');
+					contentBuffer.append('手机：<span class="addr-i">'+content.phone+'</span>');
+					contentBuffer.append('</span></li><li>');						
+					contentBuffer.append('地址：<span class="addr-i">'+content.province+content.city+content.district+content.town+content.address+'</span>');
+					contentBuffer.append('</li></ul></div><div class="bottom clearfloat box-s"><section class="shopcar clearfloat"><div class="list listtwo clearfloat">')
+					
+					
+							
+					if(content.isDefault==1)
+						contentBuffer.append('<div class="default-box  fl "><span class="xuan xuantwo clearfloat fl addr-is-default"></span><span class="mradd fl">默认地址</span></div>');
+					else
+						contentBuffer.append('<div class="default-box  fl "><span class="xuan xuantwo clearfloat fl addr-no-default"></span><span class="mradd fl">默认地址</span></div>');
+					contentBuffer.append('<div class="right fr clearfloat"><a style="cursor:pointer" class="fr js-delete" address-id="');
+					contentBuffer.append(content.collectAddressId);
+					contentBuffer.append('"> <i class="iconfont icon-lajixiang icon-shanchutwo "></i>删除</a> <a href="/user/update-address?addressId=');
+					contentBuffer.append(content.collectAddressId);		
+					contentBuffer.append('" class="fr"> <i class="iconfont icon-bianji bianjittt"></i>编辑</a></div></div></section></div></div>');		
+					$("#main").append(contentBuffer.toString());
+				});
+				//给删除按钮绑定删除事件
+				$(".js-delete").click(function(){
+					deleteAddrByAddressId($(this).attr("address-id"));
+				});
+				
+				$(".default-box").click(function(){
+					$.ajax({
+						"url" : "/user/collect_address/default/"+$(this).parents(".addlist").attr("address-id"),								
+						"contentType": "application/json",
+						"type" : "put",
+						"error" : function() {
+							mui.alert("服务器繁忙", "提示");
+						},
+						"success" : function(returnData) {
+							if (returnData.success) {
+								window.location.reload();
+								mui.toast('更改成功',{ duration:'long', type:'div' }); 
+							}else{
+								mui.alert(returnData.errMsg, "提示");
+								
+							}
+						}
+					});
+				});
+				
+				$("#loading").hide();
+				
+			} else {
+				mui.alert(returnData.errMsg, "提示");
+			}
+
+		}
+	});
+	//通过地址ID删除地址	
+	function deleteAddrByAddressId(addressId){
+		$.ajax({
+			"url" : "/user/collect_address/"+addressId,								
+			"contentType": "application/json",
+			"type" : "Delete",
+			"error" : function() {
+				mui.alert("服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				if (returnData.success) {
+					window.location.reload();
+				}else{
+					mui.alert("删除失败", "提示");
+				}
+			}
+		});
+			
+	}
+	
+});
+
+</script>
+</html>

@@ -1,0 +1,209 @@
+.view-container {
+	position: absolute;
+	.fullSize;
+	overflow: hidden;
+}
+.content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	background: @defaultBackground;
+}
+.scroll-content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.pane {
+	z-index: 5;
+	&.active {
+
+	}
+	&.cached {
+		display: none;
+	}
+}
+
+/* Home */
+.home-inform {
+	display: -webkit-flex;
+	display: flex;
+	height: 44px;
+	position: relative;
+	padding: 4px 15px;
+	-webkit-align-items: center;
+	align-items: center;
+	&:before {
+		.bottomLine();
+	}
+	.name {
+		width: 70px;
+		white-space: nowrap;
+		font-size: 12px;
+		font-weight: 500;
+		color: #333;
+		padding-right:20px;
+		background-repeat: no-repeat;
+		background-position: 100%;
+		-webkit-background-size: 20px;
+		background-size: 20px;
+	}
+	span {
+		flex: 5;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-size: 12px;
+		color: #8d8d8d;
+	}
+}
+
+.home-shortcut, .my-car-shortcut {
+	position: relative;
+	padding: 2px 5px;
+	&:before {
+		.bottomLine();
+	}
+	.img-icon { margin:5px auto 4px auto;}
+	.img-icon-name {
+		display: block;
+		margin-bottom: 8px;
+		text-align: center;
+		font-size: 13px;
+		color: #646464;
+	}
+}
+.home-pic-btn {
+	display: block;
+	width: 100%;
+}
+
+// 展厅
+
+// 展厅二级
+.exhi-hero {
+	.exhi-car-title {
+		padding: 18px 15px 10px 15px;
+		img {
+			display: block;
+			height: 25px;
+		}
+	}
+	.price {
+		padding: 15px;
+		text-align: center;
+		font-size: 14px;
+		color: #e84c3d;
+		.name {
+			color: #191919;
+		}
+	}
+}
+
+
+
+
+// myCar
+.my-car-thumbnail {
+
+	img {
+		display: block;
+		width: 100%;
+	}
+}
+.car-title {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	padding: 15px;
+	background-color: #f3f3f3;
+	.car-logo {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		flex: 1;
+		img {
+			display: block;
+			width: 110px;
+			color: #333;
+		}
+	}
+	.car-v {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 14px;
+	}
+}
+
+
+// My
+.my-info {
+	position: relative;
+	overflow: hidden;
+	.my-avatar {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 98px;
+		height: 98px;
+		margin: -70px 0 0 -49px;
+		border-radius: 50%;
+		border: solid 4px rgba(255,255,255,.5);
+	}
+	.name {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 200px;
+		height: 20px;
+		margin: 40px 0 0 -100px;
+		text-align: center;
+
+		color: #fff;
+	}
+	.my-vip {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width:200px;
+		height: 24px;
+		line-height: 24px;
+		margin: 70px 0 0 -100px;
+		padding: 0 4px;
+		border-radius: 3px;
+		text-align: center;
+		font-size: 12px;
+		color: #fff;
+		background: rgba(0,0,0,.2);
+
+	}
+}
+.my-info-background {
+	width: 100%;
+	min-height: 220px;
+	overflow: hidden;
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	filter: blur(5px);
+}
+.my-car-shortcut {
+	padding: 15px;
+}
+
+
+//////////  Tem
+.tem-pic {
+	position: relative;
+	img {
+		display: block;
+		width: 100%;
+	}
+}
+
+

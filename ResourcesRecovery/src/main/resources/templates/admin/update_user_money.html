@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/admin/css/newLayui.css}">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+</head>
+<body>
+	<div
+		style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户名</label>
+				<div class="layui-input-block">
+					<input id="username" type="text" name="username" value=""
+						 disabled="disabled"  class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">昵称</label>
+				<div class="layui-input-block">
+					<input id="displayName" type="text" name="displayName" value=""
+						 disabled="disabled"  class="layui-input">
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">金额</label>
+				<div class="layui-input-block">
+					<input id="money" type="text" name="money" value=""
+						 disabled="disabled"  class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">变动方式</label>
+				<div class="layui-input-block">
+					<select id="change-type" name="change-type" lay-verify="required">
+						<option value="0" checked>增加</option>
+						<option value="1">减少</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">变动金额</label>
+				<div class="layui-input-block">
+					<input id="change-money" type="text" name="change-money" value=""
+						placeholder="请输入要变动的金额" class="layui-input">
+				</div>
+			</div>
+			
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript"
+	th:src="@{/static/admin/plugins/layuiNew/layui.js}"></script>
+
+<script type="text/javascript">
+	layui.use('jquery', function() {
+		var $ = layui.jquery;
+		var rowDate = window.parent.tempRowData;
+
+		$("#username").val(rowDate.username);
+
+		$("#displayName").val(rowDate.userInfoEntity.displayName);
+		$("#money").val(rowDate.userInfoEntity.money);		
+	});
+
+	layui.use('form', function() {
+		var form = layui.form;
+		var $ = layui.jquery;
+		$(".layui-anim-upbit").css("color","#000");
+	});
+</script>
+</html>
+
+

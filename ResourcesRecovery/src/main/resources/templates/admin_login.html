@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>郸锋</title>
+
+<!-- Bootstrap -->
+<link href="/static/user2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/user2/css/enter.css" rel="stylesheet">
+<script src="/static/user2/js/jquery.min.js"></script>
+<script src="/static/user2/js/bootstrap.min.js"></script>
+<script src="/static/user2/js/jquery.particleground.min.js"></script>
+<link rel = "Shortcut Icon" href="/favicon.ico">
+</head>
+<body style="background-color:#16a085">
+	<div id="particles">
+		<canvas class="pg-canvas" width="1920" height="911"
+			style="display: block;"></canvas>
+		<div class="intro" style="margin-top: -256.5px;background-color:rgba(255,255,255,0.3)">
+			<div class="container">
+				<div class="row" style="padding: 30px 0;">
+					<div class="col-md-3 col-centered tac">
+						<img src="/static/user2/img/logo.png" alt="logo">
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-8 col-centered">
+						<form method="post" action="/login/from" id="register-form"
+							autocomplete="class=" nice-validator n-default" novalidate>
+							<div class="form-group">
+								<input type="text" class="form-control" id="account"
+									name="username" placeholder="手机号/用户名" autocomplete="off"
+									aria-required="true" data-tip="英文字母数字或下划线">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="password"
+									name="password" placeholder="密码" aria-required="true"
+									data-tip="请设置您的密码（6-16个字符）">
+							</div>
+							<div id="validator-tips" class="validator-tips"></div>
+							<div class="checkbox">
+								<div class="form-center-button">
+									<button type="submit" id="submit_button"
+										class="btn btn-primary btn-current">登录</button>
+									<a href="#" class="btn btn-default">注册</a>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="myModal" tabindex="-1"
+				style="text-align: left" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body" id="agreementContent"></div>
+					</div>
+				</div>
+			</div>
+			<script src="/static/user2/js/jquery.validator.min.js"></script>
+			<link rel="stylesheet" href="/static/user2/css/jquery.validator.css">
+
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$
+			.ajax({
+				"url" : "/user/info",
+				"contentType" : "application/json",
+				"type" : "get",
+				"error" : function() {
+				},
+				"success" : function(returnData) {
+					if (returnData.success) {
+						var authorities=returnData.data.authoritiesEntityList[0].authorities;
+						if(authorities=='ROLE_ADMIN'){
+									window.location.href='/admin/index';
+								
+						}else{
+							
+						}
+					} else {
+						
+					}
+
+				}
+			});
+			var intro = $('.intro');
+			$('#particles').particleground({
+				 dotColor: '#5cbdaa',
+				    lineColor: '#5cbdaa'
+			});
+			intro.css({
+				'margin-top' : -(intro.height() / 2)
+			});
+		});
+	</script>
+</body>
+</html>

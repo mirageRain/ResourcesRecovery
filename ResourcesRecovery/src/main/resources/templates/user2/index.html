@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/common.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/index.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/mui.min.css}"/>
+		<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+		
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/hmt.js}" ></script>
+		<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+		<script th:src="@{/static/user/js/swiper.min.js}" ></script>
+	</head>
+
+	<body>
+		<header class="hasManyCity" id="header">
+			<div id="" class="cityBtn">邯郸</div>
+			<div id="locaitonBtn" class="link-url locaitonBtn"></div>
+		</header>
+		<div id="container">		
+			<div id="main">
+				<div id="scroller">
+				<!-- banner轮播图 -->
+					<section class="banner">
+						<div class="swiper-container swiper-container1">
+							<div class="swiper-wrapper bannerwidth">
+								<div class="swiper-slide swiper-slide-duplicate">
+									<a href="#">
+										<img th:src="@{/static/user/img/banner1.jpg}" width="100%" height="100%">
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a href="#">
+										<img th:src="@{/static/user/img/banner2.jpg}" width="100%" height="100%">
+									</a>
+								</div>
+								<div class="swiper-slide swiper-slide-duplicate">
+									<a href="#">
+										<img th:src="@{/static/user/img/活动1.jpg}" width="100%" height="100%">
+									</a>
+								</div>
+								<div class="swiper-slide">
+									<a href="#">
+										<img th:src="@{/static/user/img/banner4.jpg}" width="100%" height="100%">
+									</a>
+								</div>
+							</div>
+							<div class="swiper-pagination swiper-pagination1">
+							</div>
+						</div>
+					</section>
+
+				<!--
+               		描述：废品价格变动表
+                -->
+				<div>
+				</br>
+				<div class="sy_title">
+							<span class="left">价格趋势</span>
+							<a href="remen.html" class="fr morethree">更多&gt;&gt;</a>
+				</div>
+					<ul class="mui-table-view">
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/废纸.jpg}">
+					            <div class="mui-media-body">
+					                废纸
+					                <p class="mui-ellipsis">现价0.5元/斤&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/上升.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/易拉罐.jpg}">
+					            <div class="mui-media-body">
+					                易拉罐
+					                <p class="mui-ellipsis">现价0.1元/个&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/下降.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/废电池.jpg}">
+					            <div class="mui-media-body">
+					                废旧电池
+					                <p class="mui-ellipsis">现价0.2元/个&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/上升.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					        
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/imgs/feizhi.jpg}">
+					            <div class="mui-media-body">
+					                	纸张
+					                <p class="mui-ellipsis">现价0.2元/个&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/上升.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/imgs/boli.jpg}">
+					            <div class="mui-media-body">
+					                	玻璃
+					                <p class="mui-ellipsis">现价0.2元/个&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/下降.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					    <li class="mui-table-view-cell mui-media">
+					        <a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" th:src="@{/static/user/img/imgs/jinshu.jpg}">
+					            <div class="mui-media-body">
+					              	  铁	
+					                <p class="mui-ellipsis">现价0.2元/个&nbsp;&nbsp;价格趋势：<img th:src="@{/static/user/img/下降.png}" width="25px"></p>
+					            </div>
+					        </a>
+					    </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<footer id="footer">
+			<div>
+				<a href="index.html">
+					<div class="icon i-1 on"></div>
+					<p>首页</p>
+				</a>
+			</div>
+			
+			<div>
+				<a href="price.html">
+					<div class="icon i-3 "></div>
+					<p>价格</p>
+				</a>
+			</div>
+			
+			<div>
+				<a href="order.html">
+					<div class="icon i-7"></div>
+					<p>订单</p>
+				</a>
+			</div>
+			
+			<div>
+				<a href="center.html">
+					<div class="icon i-4"></div>
+					<p>我的</p>
+				</a>
+			</div>			
+		</footer>		
+	</body>
+	<script th:src="@{/static/user/js/other.js}" type="text/javascript" charset="utf-8"></script>
+</html>

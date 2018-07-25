@@ -1,0 +1,241 @@
+body {
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            font-family: Microsoft Yahei, Arial, Simsun, Helvetica, Segoe UI, sans-serif;
+        }
+html {
+        height: 100%;
+    }
+
+    body,
+    #contentbox {
+        height: 100%;
+        background-color: #FFF;
+    }
+    .menu {
+        position: fixed;
+        top: 50px;
+        bottom: 0;
+        width: 2.25rem;
+        text-align: center;
+        background-color: #F8F8F8;
+    }
+
+    .menu .menuItem {
+        height: 45px;
+        width: 100%;
+        font-size: 15px;
+        line-height: 45px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .menu .menuItem.selected {
+        color: #169ADA;
+        background-color: #FFF;
+    }
+
+    .categoryBox {
+        margin-left: 2.25rem;
+        width: 5.25rem;
+        height: 99.9%;
+        overflow: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .categoryBox .categoryContent .categoryList {
+        clear: both;
+        overflow: hidden;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .categoryBox .categoryContent .categoryList:last-child {
+        padding-bottom: 300px;
+    }
+
+    .categoryBox .categoryContent .categoryList.first {
+        padding-top: 50px;
+    }
+
+    .categoryBox .categoryContent .categoryList .title {
+        position: relative;
+        width: 90%;
+        margin: 0 5%;
+        font-size: 14px;
+        color: #424242;
+        line-height: 40px;
+        text-align: left;
+        text-indent: 7px;
+    }
+
+    .categoryBox .categoryContent .categoryList .title:before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 13px;
+        width: 3px;
+        height: 14px;
+        background-color: #169ADA;
+    }
+
+    .categoryBox .categoryContent .categoryList .title .all {
+        float: right;
+        position: relative;
+        color: #b4b4b4;
+        padding-right: 12px;
+        font-size: 12px;
+    }
+
+    .categoryBox .categoryContent .categoryList .title .all:after {
+        position: absolute;
+        content: "\E629";
+        font-family: "wptFont";
+        width: 10px;
+        right: 0;
+        font-size: 10px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem {
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        width: 23.33%;
+        padding: 70px 5% 5px;
+        background-size: 63px;
+        background-repeat: no-repeat;
+        background-position: center 5px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem .itemIcon {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        width: 64px;
+        height: 64px;
+        color: #F56300;
+        font-size: 14px;
+        cursor: pointer;
+        line-height: 45px;
+        margin-left: -32px;
+        text-align: center;
+        background-color: #F4F4F4;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem:nth-child(3) .itemIcon {
+        color: #169ADA;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem:nth-child(4) .itemIcon {
+        color: #F4CE14;
+        font-size: 28px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem .text {
+        position: absolute;
+        left: 50%;
+        width: 64px;
+        cursor: pointer;
+        margin-left: -32px;
+    }
+	
+    .categoryBox .categoryContent .categoryList .categoryBox:before {
+        position: absolute;
+        left: 5%;
+        bottom: 0;
+        content: '';
+        width: 90%;
+        height: 1px;
+        background-color: #EEE;
+        transform: scaleY(0.5);
+        -webkit-transform: scaleY(0.5);
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryItem {
+        position: relative;
+        float: left;
+        width: 33.33%;
+        padding: 0 0 5px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryItem .categoryIcon {
+        position: relative;
+        background-size: 64px;
+        background-repeat: no-repeat;
+        background-position: center 5px;
+        width: 100%;
+        height: 70px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryItem .cursorArea {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        width: 64px;
+        height: 64px;
+        cursor: pointer;
+        overflow: hidden;
+        margin-left: -32px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryItem .cursorArea .new {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 74px;
+        color: #FFF;
+        height: 18px;
+        font-size: 20px;
+        line-height: 14px;
+        margin-left: -60px;
+        background-color: #E01F0B;
+        transform: rotate(-45deg) scale(0.5);
+        -webkit-transform: rotate(-45deg) scale(0.5);
+    }
+   
+    .categoryBox .categoryContent .categoryList .categoryBox .categoryItem {
+        padding: 38px 5% 18px;
+    }
+
+    .categoryBox .categoryContent .categoryList .categoryItem .text {
+        height: 20px;
+        line-height: 20px;
+        margin: 5px 0;
+        overflow: hidden;
+        font-size: 14px;
+        display: block;
+    }
+	.categoryBox .categoryContent .categoryList .categoryItem .text1 {
+        height: 14px;
+        line-height: 15px;
+        margin: 5px 0;
+        overflow: hidden;
+        font-size: 12px;
+        display: block;
+		color:#929292;
+    }
+    .categoryBox .categoryContent .categoryList .categoryItem.official {
+        clear: left;
+        width: 90%;
+        margin: 5px 5%;
+        height: auto;
+        padding: 37.6% 0 0;
+        background-size: cover;
+        background-position: center;
+    }
+
+    img{
+        width:100%;
+        height:100%;
+    }
+    
+    
+    

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>提现成功</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/common.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/index.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/user/css/mui.min.css}"/>
+		<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+		<script th:src="@{/static/user/js/jquery-1.8.2.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+		<script th:src="@{/static/user/js/hmt.js}" type="text/javascript"></script>
+		<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+		<script th:src="@{/static/user/js/swiper.min.js}" type="text/javascript" ></script>
+	</head>
+	<body>
+		<header class="hasManyCity hasManyCitytwo" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">提现成功
+			</div>			
+		</header>
+		
+		<div id="container">		
+			<div id="main">
+				<form class="wrapper-list">
+					<h4 class="dh-success" style="color: red"><img th:src="@{/static/user/img/success.png}"; width="25px">提现成功</h4>
+					<dl class="list">
+						<dd>
+							<dl>
+								<dd class="dd-padding kv-line-r">
+									<h6>昵称：</h6>
+									<span class="kv-v">
+		            					<span id="totalPrice" class="J_total-price">小可爱</span>
+									</span>
+								</dd>
+								<dd class="dd-padding kv-line-r">
+									<h6>微信号：</h6>
+									<span class="kv-v">
+		            					<span id="totalPrice" class="J_total-price">XXXXXXXXX</span>
+									</span>
+								</dd>
+								<dd class="dd-padding kv-line-r">
+									<h6>提现金额：</h6>
+									<span class="kv-v">
+		            					<span id="totalPrice" class="J_total-price">
+		            						50.0
+		            					</span>
+									</span>
+								</dd>
+							</dl>
+						</dd>
+					</dl>
+					<dl class="list">
+						<dd>
+							<dl>
+								<dd class="dd-padding kv-line-r">
+									<h6>当前账户余额：</h6>
+									<span class="kv-v">
+		            					<span id="totalPrice" class="J_total-price">
+		            						20.3
+		            					</span>
+									</span>
+								</dd>
+							</dl>
+						</dd>
+					</dl>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

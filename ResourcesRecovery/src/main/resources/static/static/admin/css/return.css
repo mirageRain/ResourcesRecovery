@@ -1,0 +1,11 @@
+td {
+	text-align: center;
+}
+.layui-title {
+	position: relative;
+}
+.layui-btn-return {
+	position: absolute;
+	bottom: 8px;
+	right: 28px;
+}

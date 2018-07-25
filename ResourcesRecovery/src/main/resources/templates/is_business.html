@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>收获员端</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+
+<link rel = "Shortcut Icon" href="/favicon.ico">
+</head>
+<body>
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js" ></script>
+<script type="text/javascript">
+	$(function() {
+		$
+				.ajax({
+					"url" : "/user/info",
+					"contentType" : "application/json",
+					"type" : "get",
+					"error" : function() {
+						mui.alert( "服务器繁忙", "提示");
+					},
+					"success" : function(returnData) {
+						if (returnData.success) {
+							var authorities=returnData.data.authoritiesEntityList[0].authorities;
+							if(authorities!='ROLE_ADMIN'&&authorities!='ROLE_BUSINESS'){
+								mui.confirm( "您不具有收货员权限，请您申请后等待当地管理员审批，您现在可以转到客户端或体验收货员系统", "权限认证", ['转到客户端','暂时体验'], function(e){
+									if(e.index == 0){
+										window.location.href='/user/index';
+									}else{
+										window.location.href='/business/index';
+									}
+									
+								} );
+							}else{
+								window.location.href='/business/index';
+							}
+						} else {
+							mui.alert("您不具有该权限，请向管理员申请", "提示");
+						}
+
+					}
+				});
+	});
+</script>
+</html>

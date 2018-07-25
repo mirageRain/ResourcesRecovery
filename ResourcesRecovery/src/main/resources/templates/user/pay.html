@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>支付订单</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/common.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.min.css"/>
+		<link rel="stylesheet" href="/static/user/css/reset.css">
+		<script src="/static/user/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/static/user/js/iscroll.js"></script>
+		<script type="text/javascript" src="/static/user/js/jquery.flexslider-min.js"></script>
+		<script src="/static/user/js/hmt.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/static/user/js/index.js"></script>
+		<script src="/static/user/js/swiper.min.js" type="text/javascript" ></script>
+
+	<link rel="stylesheet" type="text/css" href="/static/user/css/wait.css">
+	<script type="text/javascript" src="/static/user/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/static/user/js/wait.js"></script>
+	</head>
+	<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-absolute">
+				<div class="wait-i"><img class="wait-img" src="/static/user/img/lode.png"></div>
+				<div class="object" id="object_one"></div>
+				<div class="object" id="object_two" style="left:20px;"></div>
+				<div class="object" id="object_three" style="left:40px;"></div>
+				<div class="object" id="object_four" style="left:60px;"></div>
+				<div class="object" id="object_five" style="left:80px;"></div>
+				<p class="wait-i1">请耐心等待，加载中... </p>
+			</div>
+		</div> 
+	</div>
+
+		<header class="hasManyCity hasManyCitytwo hasManyCitythree" id="header">
+			<a href="javascript:history.go(-1)" class="fl fanhui"><i class="iconfont icon-fanhui"></i></a>
+			<div class="header-tit">
+				支付订单
+			</div>			
+		</header>
+		
+		<div id="container">		
+			<div id="main">
+				<div class="hotel-pay clearfloat">
+					<ul>
+						<li>
+							<span class="fl">订单号</span>
+							<span class="fr">1</span>
+						</li>
+						<li>
+							<span class="fl">支付日期</span>
+							<span class="fr">2018/3/28</span>
+						</li>
+						<li>
+							<span class="fl">收货种类</span>
+							<span class="fr">5种</span>
+						</li>
+						<li>
+							<span class="fl">应付总价</span>
+							<span class="fr price">¥23.3</span>
+						</li>
+					</ul>
+				</div>
+				<div class="in-pay-method cell-box">
+					<div class="in-pay-type cell-access">
+						<div class="cell-icon">
+							<img src="/static/user/img/weixin2-2.png" alt="微信支付">
+						</div>
+						<div class="cell-left">
+							<div class="in-pay-title cell-ellipsis">微信支付 </div>
+							<div class="in-pay-info cell-ellipsis">
+								<span class="in-amount-info">推荐安装微信6.1.0及以上版本</span>
+							</div>
+						</div>
+						<div class="checkbox">
+							<input type="radio" name="pay-method" checked="" data-index="1">
+							<span class="checkbox-icon-round"></span>
+						</div>
+					</div>
+				</div>
+				<div class="btn-line">
+					<button class="btn btn-submit">
+						<span class="in-confirm">确认支付</span>
+						<span class="in-need-pay">¥23.3</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/static/user/js/index.min.14hpKd.js"></script>
+</html>

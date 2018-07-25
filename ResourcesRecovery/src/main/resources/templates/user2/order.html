@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/common.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/index.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/user/css/mui.min.css}" />
+<link rel="stylesheet" th:href="@{/static/user/css/reset.css}">
+
+<script th:src="@{/static/user/js/jquery-1.8.2.min.js}"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/static/user/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/iscroll.js}"></script>
+<script type="text/javascript"
+	th:src="@{/static/user/js/jquery.flexslider-min.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/hmt.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/static/user/js/swiper.min.js}"></script>
+</head>
+<body>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:history.go(-1)" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">回收订单</div>
+	</header>
+
+	<div id="container">
+		<div id="main">
+			<div class="notice">
+				<div class="tab-hd tab-hdtwo">
+					<ul class="tab-nav">
+						<li>全部</li>
+						<li>待接单</li>
+						<li>待上门</li>
+						<li>待评价</li>
+						<li>已完成</li>
+					</ul>
+				</div>
+				<div class="tab-bd">
+					<div class="tab-pal">
+						<div class="order-botto clearfloat box-s">
+							<a style="cursor: pointer" id="torder">我要下单</a>
+						</div>
+						<dl class="list listtwo list-in">
+							<dd id="orderContent"></dd>
+
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：2</div>
+								<a href="dd-daishangmen.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">待上门</p>
+									<a href="#" class="fr">催单</a>
+								</div>
+							</dd>
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：3</div>
+								<a href="dd-quxiao.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">已取消</p>
+									<a href="torder.html" class="fr">再次下单</a>
+								</div>
+							</dd>
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：4</div>
+								<a href="dd-wancheng.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">已回收</p>
+									<a href="torder.html" class="fr">再次下单</a> <a href="assess.html"
+										class="fr">评价</a>
+								</div>
+							</dd>
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：5</div>
+								<a href="dd-wancheng.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">已评价</p>
+									<a href="torder.html" class="fr">再次下单</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<!-- -->
+					<div class="tab-pal">
+						<dl class="list listtwo list-in">
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：1</div>
+								<a href="dd-daijiedan.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">未接单</p>
+									<a href="#" class="fr">取消订单</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in">
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：2</div>
+								<a href="dd-daishangmen.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">待上门</p>
+									<a href="#" class="fr">催单</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in">
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：4</div>
+								<a href="dd-wancheng.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">已回收</p>
+									<a href="torder.html" class="fr">再次下单</a> <a href="assess.html"
+										class="fr">评价</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in">
+							<dd>
+								<div class="orderbh clearfloat box-s">订单号：5</div>
+								<a href="dd-wancheng.html" class="react">
+									<div class="dealcard dealcardtwo clearfloat">
+										<div class="price pricetwo">
+											<span class="address">联系人：</span> <span class="strong">测试用例不可操作</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">手机号：</span> <span class="strong">12345678910</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约时间：</span> <span class="strong">2018年5月3日，15：00</span>
+										</div>
+										<div class="price pricetwo">
+											<span class="address">预约地址：</span> <span class="strong">XXXXXXXXXXXX</span>
+										</div>
+									</div>
+								</a>
+								<div class="order-bottom clearfloat box-s">
+									<p class="fl">已评价</p>
+									<a href="torder.html" class="fr">再次下单</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--footer star-->
+	<footer id="footer">
+		<div>
+			<a href="index.html">
+				<div class="icon i-1"></div>
+				<p>首页</p>
+			</a>
+		</div>
+		<div>
+			<a href="price.html">
+				<div class="icon i-3"></div>
+				<p>价格</p>
+			</a>
+		</div>
+		<div>
+			<a href="order.html">
+				<div class="icon i-7 on"></div>
+				<p>订单</p>
+			</a>
+		</div>
+		<div>
+			<a href="center.html">
+				<div class="icon i-4"></div>
+				<p>我的</p>
+			</a>
+		</div>
+	</footer>
+	<!--footer end-->
+</body>
+<script th:src="@{/static/user/js/jquery.SuperSlide.2.1.js}"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		jQuery(".notice").slide({ titCell:".tab-hd li", mainCell:".tab-bd",delayTime:0 });
+		
+		
+		
+		$(function(){
+			
+			var defaultAddrId=null;
+			
+			$.ajax({
+				"url" : "/user/collect_address/default",								
+				"contentType": "application/json",
+				"type" : "get",
+				"async": false,
+				"error" : function() {
+					alert("服务器繁忙");
+				},
+				"success" : function(returnData) {
+					defaultAddrId=returnData.data;
+				}
+			});
+		
+			$("#torder").click(function(){
+				
+				if(defaultAddrId==null)
+					window.location.href="/user/torder";
+				else
+					window.location.href="/user/torder?addrId="+defaultAddrId;
+			});
+			
+		});
+		
+	</script>
+
+<script type="text/javascript">
+		
+		//返回的是对象形式的参数  
+		function getUrlArgObject() {
+			var args = new Object();
+			var query = location.search.substring(1);//获取查询串  
+			var pairs = query.split(",");//在逗号处断开  
+			for (var i = 0; i < pairs.length; i++) {
+				var pos = pairs[i].indexOf('=');//查找name=value  
+				if (pos == -1) {//如果没有找到就跳过  
+					continue;
+				}
+				var argname = pairs[i].substring(0, pos);//提取name  
+				var value = pairs[i].substring(pos + 1);//提取value  
+				args[argname] = unescape(value);//存为属性  
+			}
+			return args;//返回对象  
+		}
+
+		function getAddrJson() {
+			var json;
+			$.ajax({
+				url : "http://passer-by.com/data_location/list.json",
+				type : 'GET',
+				crossDomain : true,
+				async : false,
+				dataType : 'json',
+				success : function(data) {
+					json = data;
+				}
+
+			});
+			return json;
+		}
+
+		function getAddrByCode(code, json) {
+			var addr = "";
+			code = code.toString();
+
+			var towncode = code; //街道乡镇编码
+			var provinceCode = code.substring(0, 2) + "0000"; //省份编码
+			var cityCode = code.substring(0, 4) + "00"; //城市编码
+			var areaCode = code.substring(0, 6); //地区编码
+			var data;
+			if (json == null)
+				data = getAddrJson();
+			else
+				data = json;
+			addr += data[provinceCode];
+			if (provinceCode != cityCode && data[cityCode] != null)
+				addr += data[cityCode];
+			addr += data[areaCode];
+			//获取街道数据
+			$.ajax({
+				url : 'http://passer-by.com/data_location/town/' + areaCode
+						+ '.json',
+				dataType : 'json',
+				async : false,
+				success : function(town) {
+					addr += town[code];
+				}
+			});
+			return addr;
+
+		}
+
+		function getMyDate(str) {
+			var oDate = new Date(str), oYear = oDate.getFullYear(), oMonth = oDate
+					.getMonth() + 1, oDay = oDate.getDate(), oHour = oDate
+					.getHours(), oMin = oDate.getMinutes(), oSen = oDate
+					.getSeconds(), oTime = oYear + '年' + getzf(oMonth) + '月'
+					+ getzf(oDay) + '日   ' + getzf(oHour) + ':' + getzf(oMin) + ':'
+					+ getzf(oSen);//最后拼接时间  
+			return oTime;
+		};
+		//补0
+		function getzf(num) {
+			if (parseInt(num) < 10) {
+				num = '0' + num;
+			}
+			return num;
+		}
+		function StringBuffer() {
+		    this.__strings__ = new Array;
+		}
+
+		StringBuffer.prototype.append = function (str) {
+		    this.__strings__.push(str);
+		};
+
+		StringBuffer.prototype.toString = function () {
+		    return this.__strings__.join("");
+		};
+		
+		$(function(){
+				$.ajax({
+					"url" : "/user/orders",
+					"contentType" : "application/json",
+					"type" : "get",
+					"async" : false,
+					"error" : function() {
+						alert("服务器繁忙");
+					},
+					"success" : function(returnData) {
+						
+						if (returnData.success){
+							$.each(
+								returnData.data, function(index, content){
+								var contentBuffer = new StringBuffer(); 
+								
+								var applyName;
+								var phone;
+								var address;
+										$.ajax({
+											"url" : "/user/collect_address/"
+													+ content.collectAddressId,
+											"contentType" : "application/json",
+											"type" : "get",
+											"async" : false,
+											"error" : function() {
+												alert("服务器繁忙");
+											},
+											"success" : function(tempData) {
+												
+												if (tempData.success) {
+													
+													applyName=tempData.data.applyName;
+													phone=tempData.data.phone;
+													address=tempData.data.province+tempData.data.city+tempData.data.district+tempData.data.town+tempData.data.address;
+													//alert(tempData.data.applyName);
+												}
+											}
+										});
+										
+								contentBuffer.append('<div class="orderbh clearfloat box-s">订单号：');
+								contentBuffer.append(content.orderId);
+								contentBuffer.append('</div><a style="cursor:pointer" data-order-id="');
+								contentBuffer.append(content.orderId);
+								contentBuffer.append('"class="react js-to-wait"><div class="dealcard dealcardtwo clearfloat"><div class="price pricetwo"><span class="address">联系人：</span><span class="strong">');		
+								contentBuffer.append(applyName);
+								contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">手机号：</span><span class="strong">');
+								contentBuffer.append(phone);
+								contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约时间：</span><span class="strong">');
+								contentBuffer.append(getMyDate(content.applyTime));
+								contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约地址：</span><span class="strong">');
+								contentBuffer.append(address);
+								contentBuffer.append('</span></div></div></a><div class="order-bottom clearfloat box-s"><p class="fl">未接单</p><a  style="cursor:pointer" class="fr js-cancel" data-order-id="');
+								contentBuffer.append(content.orderId);
+								contentBuffer.append('">取消订单</a></div>');
+								$("#orderContent").append(contentBuffer.toString());
+								
+					
+							});
+								$(".js-to-wait").click(function(){
+									window.location.href="/user/dd-daijiedan?orderId="+$(this).attr("data-order-id");
+								});
+								$(".js-cancel").click(function(){
+									var orderId=$(this).attr("data-order-id");
+									$.ajax({
+										"url" : "/user/orders/"
+												+ orderId,
+										"contentType" : "application/json",
+										"type" : "delete",
+										"error" : function() {
+											alert("服务器繁忙");
+										},
+										"success" : function(returnData) {
+											window.location.reload();
+										}
+									});
+								});
+						}
+					}
+				});
+			});
+	</script>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单</title>
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/common.css">
+<link rel="stylesheet" type="text/css" href="/static/user/css/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/user/css/mui.min.css" />
+<link rel="stylesheet" href="/static/user/css/reset.css">
+<link rel="stylesheet" href="/static/user/css/theme.css" />
+<link rel="Shortcut Icon" href="/favicon.ico">
+<style>
+.list {
+	border-top: 1px solid #DDD8CE;
+	border-bottom: 1px solid #DDD8CE;
+	margin-top: .1rem;
+	margin-bottom: 0;
+	background-color: #fff;
+	
+}
+
+</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-center">
+			<div id="loading-center-content">
+				<div class="wait-i"></div>
+				<div id="loading-center-absolute">
+					<div class="object" id="object_one"></div>
+					<div class="object" id="object_two" style="left: 20px;"></div>
+					<div class="object" id="object_three" style="left: 40px;"></div>
+					<div class="object" id="object_four" style="left: 60px;"></div>
+					<div class="object" id="object_five" style="left: 80px;"></div>
+				</div>
+				<p class="wait-i1">请耐心等待，加载中...</p>
+			</div>
+
+		</div>
+	</div>
+	<header class="hasManyCity hasManyCitytwo" id="header">
+		<a href="javascript:history.go(-1)" class="fl fanhui"><i
+			class="iconfont icon-fanhui"></i></a>
+		<div class="header-tit">回收订单</div>
+	</header>
+
+	<div id="container">
+		<div id="main">
+			<div class="notice">
+				<div class="tab-hd tab-hdtwo">
+					<ul class="tab-nav">
+						<li>全部</li>
+						<li>接单中</li>
+						<li>上门中</li>
+						<li>已完成</li>
+						<li>待评价</li>
+						
+					</ul>
+				</div>
+				<div class="tab-bd">
+					<div class="tab-pal">
+						<dl class="list listtwo list-in " id="orderContent1">
+						</dl>
+					</div>
+					<!-- -->
+					<div class="tab-pal">
+						<dl class="list listtwo list-in" id="orderContent2">
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in" id="orderContent3">
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in" id="orderContent4">
+						</dl>
+					</div>
+					<div class="tab-pal">
+						<dl class="list listtwo list-in" id="orderContent5">
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer">
+		<div>
+			<a id="to-business-index" >
+				<div class="icon i-1 "></div>
+				<p>首页</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-price">
+				<div class="icon i-3 "></div>
+				<p>价格</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-order">
+				<div class="icon i-7 on"></div>
+				<p>订单</p>
+			</a>
+		</div>
+
+		<div>
+			<a id="to-business-center">
+				<div class="icon i-4"></div>
+				<p>我的</p>
+			</a>
+		</div>
+	</footer>
+</body>
+<script type="text/javascript" src="/static/user/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/user/js/common.js"></script>
+<script type="text/javascript" src="/static/user/js/mui.min.js"></script>
+<script src="/static/user/js/jquery.SuperSlide.2.1.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){	
+		var defaultAddrId=null;
+		
+		$.ajax({
+			"url" : "/user/collect_address/default",								
+			"contentType": "application/json",
+			"type" : "get",
+			"async": false,
+			"error" : function() {
+				mui.alert("服务器繁忙", "提示");
+			},
+			"success" : function(returnData) {
+				defaultAddrId=returnData.data;
+			}
+		});
+	
+		$("#torder").click(function(){
+			
+			if(defaultAddrId==null)
+				window.location.href="/user/torder";
+			else
+				window.location.href="/user/torder?addrId="+defaultAddrId;
+		});
+	
+	
+	$.ajax({
+		"url" : "/business/orders",
+		"contentType" : "application/json",
+		"type" : "get",
+		"async" : false,
+		"error" : function() {
+			mui.alert("服务器繁忙", "提示");
+		},
+		"success" : function(returnData) {
+			
+			if (returnData.success){
+				$.each(
+					returnData.data, function(index, content){
+					var contentBuffer = new StringBuffer(); 
+					
+					var applyName;
+					var phone;
+					var address;
+					var state=content.state;
+							$.ajax({
+								"url" : "/user/collect_address/"
+										+ content.collectAddressId,
+								"contentType" : "application/json",
+								"type" : "get",
+								"async" : false,
+								"error" : function() {
+									mui.alert("服务器繁忙", "提示");
+								},
+								"success" : function(tempData) {
+									
+									if (tempData.success) {
+										
+										applyName=tempData.data.applyName;
+										phone=tempData.data.phone;
+										address=tempData.data.province+tempData.data.city+tempData.data.district+tempData.data.town+tempData.data.address;
+										
+										//alert(tempData.data.applyName);
+									}
+								}
+							});
+							
+					if(state==1){
+						contentBuffer.append('<dd><div class="orderbh clearfloat box-s">订单号：');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('</div><a style="cursor:pointer"  data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('"class="react js-to-wait"><div class="dealcard dealcardtwo clearfloat"><div class="price pricetwo"><span class="address">联系人：</span><span class="strong">');		
+						contentBuffer.append(applyName);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">手机号：</span><span class="strong">');
+						contentBuffer.append(phone);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约时间：</span><span class="strong">');
+						contentBuffer.append(getMyDate(content.expectTime));
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约地址：</span><span class="strong">');
+						contentBuffer.append(address);
+						contentBuffer.append('</span></div></div></a><div class="order-bottom clearfloat box-s"><span class="fl mui-badge mui-badge-primary">待接单</span><a  style="cursor:pointer" class="fr js-taking" data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('">接单</a></div></dd>');
+						$("#orderContent2").append(contentBuffer.toString());
+					}else if(state==2){
+						contentBuffer.append('<dd><div class="orderbh clearfloat box-s">订单号：');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('</div><a style="cursor:pointer"  data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('"class="react js-to-home"><div class="dealcard dealcardtwo clearfloat"><div class="price pricetwo"><span class="address">联系人：</span><span class="strong">');		
+						contentBuffer.append(applyName);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">手机号：</span><span class="strong">');
+						contentBuffer.append(phone);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约时间：</span><span class="strong">');
+						contentBuffer.append(getMyDate(content.expectTime));
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约地址：</span><span class="strong">');
+						contentBuffer.append(address);
+						contentBuffer.append('</span></div></div></a><div class="order-bottom clearfloat box-s"><span class="fl mui-badge mui-badge-purple">待结算</span><a  style="cursor:pointer" class="fr js-statements" data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('">结算</a></div></dd>');
+						$("#orderContent3").append(contentBuffer.toString());
+					}else if(state==3){
+						contentBuffer.append('<dd><div class="orderbh clearfloat box-s">订单号：');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('</div><a style="cursor:pointer" data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('"class="react js-to-end"><div class="dealcard dealcardtwo clearfloat"><div class="price pricetwo"><span class="address">联系人：</span><span class="strong">');		
+						contentBuffer.append(applyName);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">手机号：</span><span class="strong">');
+						contentBuffer.append(phone);
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约时间：</span><span class="strong">');
+						contentBuffer.append(getMyDate(content.expectTime));
+						contentBuffer.append('</span></div><div class="price pricetwo"><span class="address">预约地址：</span><span class="strong">');
+						contentBuffer.append(address);
+						contentBuffer.append('</span></div></div></a><div class="order-bottom clearfloat box-s"><span class="fl mui-badge mui-badge-success">已完成</span><a  style="cursor:pointer" class="fr js-evaluate" data-order-id="');
+						contentBuffer.append(content.orderId);
+						contentBuffer.append('">评价</a></div></dd>');
+						$("#orderContent4").append(contentBuffer.toString());
+						$("#orderContent5").append(contentBuffer.toString());
+					}
+					$("#orderContent1").append(contentBuffer.toString());
+					
+		
+				});
+				$("#loading").hide();
+					$(".js-to-wait").click(function(){
+						window.location.href="/business/dd-daijiedan?orderId="+$(this).attr("data-order-id");
+					});
+					$(".js-statements").click(function(){
+						window.location.href="/business/price-select?orderId="+$(this).attr("data-order-id");
+					});
+					$(".js-to-home").click(function(){
+						window.location.href="/business/dd-daishangmen?orderId="+$(this).attr("data-order-id");
+					});
+					$(".js-to-end").click(function(){
+						window.location.href="/business/dd-wancheng?orderId="+$(this).attr("data-order-id");
+					});
+					$(".js-evaluate").click(function(){
+						window.location.href="/user/assess?orderId="+$(this).attr("data-order-id");
+					});
+					$(".js-taking").click(function(){
+						var orderId=$(this).attr("data-order-id");
+						$.ajax({
+							"url" : "/business/orders/taking/"
+									+ orderId,
+							"contentType" : "application/json",
+							"type" : "put",
+							"error" : function() {
+								mui.alert("服务器繁忙", "提示");
+							},
+							"success" : function(returnData) {
+								window.location.reload();
+							}
+						});
+					});
+			}
+		}
+	});
+	document.getElementById("to-business-index").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/business/index',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	document.getElementById("to-business-price").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/business/price',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	document.getElementById("to-business-order").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/business/order',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	});
+	document.getElementById("to-business-center").addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'/business/center',
+		    waiting:{
+		        autoShow:true,//自动显示等待框，默认为true
+		        title:'正在加载...'
+		      }
+		})
+	}); 
+	jQuery(".notice").slide({
+		titCell : ".tab-hd li",
+		mainCell : ".tab-bd",
+		delayTime : 0
+	});
+});
+</script>
+
+
+</html>

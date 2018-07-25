@@ -1,0 +1,118 @@
+
+.m-panel {
+	position: relative;
+	&:before {
+		.topLine();
+	}
+	.panel-header {
+		position: relative;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-align-self: center;
+		align-self: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		min-height: 44px;
+		padding: 4px 15px;
+		font-size: 13px;
+		&:before {
+			.bottomLine();
+		}
+		.panel-title {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			font-weight: 500;
+		}
+		.panel-title-right {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-align-items: center;
+			align-items: center;
+			-webkit-align-self: center;
+			align-self: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			height: 100%;
+			.icon {
+				margin-right: -8px;
+				width: 25px;
+				height: 32px;
+			}
+		}
+	}
+	.panel-content {
+		position: relative;
+	}
+}
+
+.window {
+	.window-pic {
+		background: rgba(0,0,0,.5);
+	}
+}
+
+.mask-background {
+	display: none;
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,.5);
+	.filterBlur;
+	&.open {
+		display: block;
+	}
+}
+.pop-window {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+	left: 0%;
+	bottom: 0;
+	background: #fff;
+	.pop-header {
+		position: relative;
+		.flexBox;
+		.itemCenter;
+		height: 44px;
+		&:before {
+			.bottomLine();
+		}
+		.title {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			text-align: center;
+			line-height: 44px;
+		}
+		.pop-close {
+			position: absolute;
+			top: 6px;
+			right: 10px;
+			padding: 0;
+			width: 32px;
+			height: 32px;
+		}
+	}
+	.pop-content {
+		min-height: 240px;
+	}
+	.pop-inner {
+		height: 200px;
+		overflow-y: auto;
+
+	}
+	.open {
+		display: block;
+	}
+}
